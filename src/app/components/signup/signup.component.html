@@ -1,0 +1,55 @@
+<div class="inputContainer">
+  <mat-form-field  appearance="fill">
+    <mat-label>Nombre</mat-label>
+    <input [(ngModel)]="userSignup.name" matInput />
+  </mat-form-field>
+  <mat-form-field  appearance="fill">
+    <mat-label>Apellidos</mat-label>
+    <input [(ngModel)]="userSignup.surname" matInput />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Edad</mat-label>
+    <input [(ngModel)]="userSignup.age" matInput />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Estudios</mat-label>
+    <input [(ngModel)]="userSignup.studies" matInput />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Dinos algo sobre ti</mat-label>
+    <input [(ngModel)]="userSignup.bio" matInput />
+  </mat-form-field>
+  
+  <mat-form-field appearance="fill">
+    <mat-label>Dirección de correo electrónico</mat-label>
+    <input [(ngModel)]="userSignup.email" matInput />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Introduce una contraseña</mat-label>
+    <input [(ngModel)]="userSignup.password" matInput [type]="!hide ? 'password' : 'text'" />
+    <button
+      mat-icon-button
+      matSuffix
+      (click)="hide = !hide"
+      [attr.aria-label]="'Hide password'"
+      [attr.aria-pressed]="hide"
+    >
+      <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+    </button>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Repite la contraseña</mat-label>
+    <input [(ngModel)]="userSignup.rPassword" matInput [type]="!hide ? 'password' : 'text'" />
+    <button
+      mat-icon-button
+      matSuffix
+      (click)="hide = !hide"
+      [attr.aria-label]="'Hide password'"
+      [attr.aria-pressed]="hide"
+    >
+      <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+    </button>
+  </mat-form-field>
+  <button (click)="addUser()" mat-raised-button color="primary">Registrarse</button>
+</div>
+
