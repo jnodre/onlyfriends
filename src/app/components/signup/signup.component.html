@@ -1,33 +1,22 @@
-<div class="inputContainer">
-  <mat-form-field  appearance="fill">
-    <mat-label>Nombre</mat-label>
-    <input [(ngModel)]="userSignup.name" matInput />
-  </mat-form-field>
-  <mat-form-field  appearance="fill">
-    <mat-label>Apellidos</mat-label>
-    <input [(ngModel)]="userSignup.surname" matInput />
-  </mat-form-field>
-  <mat-form-field appearance="fill">
-    <mat-label>Edad</mat-label>
-    <input [(ngModel)]="userSignup.age" matInput />
-  </mat-form-field>
-  <mat-form-field appearance="fill">
-    <mat-label>Estudios</mat-label>
-    <input [(ngModel)]="userSignup.studies" matInput />
-  </mat-form-field>
-  <mat-form-field appearance="fill">
-    <mat-label>Dinos algo sobre ti</mat-label>
-    <input [(ngModel)]="userSignup.bio" matInput />
-  </mat-form-field>
-  
-  <mat-form-field appearance="fill">
-    <mat-label>Dirección de correo electrónico</mat-label>
-    <input [(ngModel)]="userSignup.email" matInput />
-  </mat-form-field>
+  <form class="inputContainer" [formGroup]="signupForm">
+
+    <mat-form-field appearance="fill">
+      <mat-label>Introduce tu direccíon de correo electrónico</mat-label>
+      <input matInput  [formControl]="userSignUp.email"     
+       required>
+      <mat-error *ngIf="userSignUp.email.invalid">{{getErrorMessageEmail()}}</mat-error>
+    </mat-form-field>
+
   <mat-form-field appearance="fill">
     <mat-label>Introduce una contraseña</mat-label>
-    <input [(ngModel)]="userSignup.password" matInput [type]="!hide ? 'password' : 'text'" />
+    <input
+    [formControl]="userSignUp.password"  
+    name="password" 
+     required  
+     matInput 
+     [type]="!hide ? 'password' : 'text'" />
     <button
+
       mat-icon-button
       matSuffix
       (click)="hide = !hide"
@@ -36,10 +25,15 @@
     >
       <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
     </button>
+    <mat-error *ngIf="userSignUp.password.invalid">{{getErrorMessagePassword()}}</mat-error>
+
   </mat-form-field>
-  <mat-form-field appearance="fill">
+   <mat-form-field appearance="fill">
     <mat-label>Repite la contraseña</mat-label>
-    <input [(ngModel)]="userSignup.rPassword" matInput [type]="!hide ? 'password' : 'text'" />
+    <input 
+    [errorStateMatcher]="matcher"
+    [formControl]="userSignUp.confirmPassword"  
+    name="confirmPassword" matInput [type]="!hide ? 'password' : 'text'" />
     <button
       mat-icon-button
       matSuffix
@@ -49,7 +43,9 @@
     >
       <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
     </button>
-  </mat-form-field>
-  <button (click)="addUser()" mat-raised-button color="primary">Registrarse</button>
-</div>
+    <mat-error *ngIf="signupForm.hasError('match')">Las contraseñas deben de ser la misma.</mat-error>
+
+  </mat-form-field> 
+  <button [disabled]="!signupForm.valid" (click)="addUser()" mat-raised-button color="primary">Registrarse</button>
+  </form>
 

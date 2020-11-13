@@ -2,7 +2,12 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
+    "strict" : true,
+    "baseUrl": "src",
+    "paths": {
+      "@comp/*": ["app/components/*"],
+      "@int/*": ["app/interfaces/*"]
+ },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
