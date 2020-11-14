@@ -1,0 +1,9 @@
+<p>Has iniciado sesión como {{ user.email }}.</p>
+<p>Estos son tus hobbies:</p>
+<ul *ngFor="let hobby of user.hobbies">
+  <li>{{ hobby }}</li>
+</ul>
+
+<input type="text" [(ngModel)]="hobby" />
+
+<button (click)="addHobbies()">Añadir hobby</button>

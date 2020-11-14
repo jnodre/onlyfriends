@@ -14,8 +14,9 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { ProfileComponent } from './components/profile/profile.component';
+import { ProfileComponent } from './components/home/profile/profile.component';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
     SignupComponent,
     LoginComponent,
     ProfileComponent,
+    HomeComponent,
   ],
   imports: [
     FormsModule,

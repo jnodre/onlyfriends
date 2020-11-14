@@ -10,7 +10,7 @@ export class LoginService {
 
   constructor() {}
 
-  public getUser(email: string, password: string): Promise<any>{
+  public logInUser(email: string, password: string): Promise<UsersLogIn>{
     return axios
       .post(this.dburl, {
         email,
