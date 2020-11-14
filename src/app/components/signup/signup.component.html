@@ -1,67 +1,74 @@
-<form class="inputContainer" [formGroup]="signUpForm">
-  <mat-form-field appearance="fill">
-    <mat-label>Introduce tu direccíon de correo electrónico</mat-label>
-    <input 
-    [errorStateMatcher]="defaultInputMatcher"
-    matInput 
-    [formControl]="userSignUp.email" 
-    required />
-    <mat-error *ngIf="userSignUp.email.invalid">{{
-      getErrorMessageEmail()
-    }}</mat-error>
-  </mat-form-field>
+<div class="inputContainer">
+  <form class="form" [formGroup]="signUpForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Introduce tu direccíon de correo electrónico</mat-label>
+      <input
+        [errorStateMatcher]="defaultInputMatcher"
+        matInput
+        [formControl]="userSignUp.email"
+        required
+      />
+      <mat-error *ngIf="userSignUp.email.invalid">{{
+        getErrorMessageEmail()
+      }}</mat-error>
+    </mat-form-field>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Introduce una contraseña</mat-label>
-    <input
-      [errorStateMatcher]="defaultInputMatcher"
-      [formControl]="userSignUp.password"
-      name="password"
-      required
-      matInput
-      [type]="!hide ? 'password' : 'text'"
-    />
+    <mat-form-field appearance="fill">
+      <mat-label>Introduce una contraseña</mat-label>
+      <input
+        [errorStateMatcher]="defaultInputMatcher"
+        [formControl]="userSignUp.password"
+        name="password"
+        required
+        matInput
+        [type]="!hide ? 'password' : 'text'"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hide = !hide"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide"
+      >
+        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+      <mat-error *ngIf="userSignUp.password.invalid">{{
+        getErrorMessagePassword()
+      }}</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Repite la contraseña</mat-label>
+      <input
+        [errorStateMatcher]="passwordMatcher"
+        [formControl]="userSignUp.confirmPassword"
+        name="confirmPassword"
+        matInput
+        [type]="!hide ? 'password' : 'text'"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hide = !hide"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide"
+      >
+        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+      <mat-error *ngIf="signUpForm.hasError('match')"
+        >Las contraseñas deben de ser la misma.</mat-error
+      >
+    </mat-form-field>
     <button
-      mat-icon-button
-      matSuffix
-      (click)="hide = !hide"
-      [attr.aria-label]="'Hide password'"
-      [attr.aria-pressed]="hide"
+      [disabled]="!signUpForm.valid"
+      (click)="addUser()"
+      mat-raised-button
+      color="primary"
     >
-      <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+      Registrarse
     </button>
-    <mat-error *ngIf="userSignUp.password.invalid">{{
-      getErrorMessagePassword()
-    }}</mat-error>
-  </mat-form-field>
-  <mat-form-field appearance="fill">
-    <mat-label>Repite la contraseña</mat-label>
-    <input
-      [errorStateMatcher]="passwordMatcher"
-      [formControl]="userSignUp.confirmPassword"
-      name="confirmPassword"
-      matInput
-      [type]="!hide ? 'password' : 'text'"
-    />
-    <button
-      mat-icon-button
-      matSuffix
-      (click)="hide = !hide"
-      [attr.aria-label]="'Hide password'"
-      [attr.aria-pressed]="hide"
-    >
-      <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
-    </button>
-    <mat-error *ngIf="signUpForm.hasError('match')"
-      >Las contraseñas deben de ser la misma.</mat-error
-    >
-  </mat-form-field>
-  <button
-    [disabled]="!signUpForm.valid"
-    (click)="addUser()"
-    mat-raised-button
-    color="primary"
-  >
-    Registrarse
-  </button>
-</form>
+  </form>
+  <div class="bottomFormText">
+    <p>¿Ya tienes una cuenta?</p>
+    <a routerLink="">Inicia sesión</a>
+  </div>
+</div>

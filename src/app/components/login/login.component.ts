@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsersLogIn } from '@int/users-log-in';
 import { DefaultInputMatcher } from '@app/user-form.error-matcher';
+import { LoginService } from '@app/services/login.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +11,11 @@ import { DefaultInputMatcher } from '@app/user-form.error-matcher';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private router: Router,
+    private formBuilder: FormBuilder,
+    private loginService: LoginService
+  ) {}
 
   logInForm = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
@@ -20,7 +26,7 @@ export class LoginComponent implements OnInit {
     password: this.logInForm.controls.password,
     email: this.logInForm.controls.email,
   };
-
+  // tslint:disable-next-line:no-inferrable-types
   hide = false;
   defaultInputMatcher = new DefaultInputMatcher();
 
@@ -42,7 +48,14 @@ export class LoginComponent implements OnInit {
   }
 
   public logIn(): void {
-    console.log(`${this.usersLogIn.email.value} y ${this.usersLogIn.password.value}`);
+    this.loginService
+      .getUser(this.usersLogIn.email.value, this.usersLogIn.password.value)
+      .then((res) => {
+        console.log(res);
+        this.router.navigateByUrl('/profile');
+
+      })
+      .catch(() => console.log('hay un error'));
   }
   ngOnInit(): void {}
 }

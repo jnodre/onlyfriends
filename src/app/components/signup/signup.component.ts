@@ -1,14 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsersSignUp } from '@int/users-sign-up';
-import { PasswordMatcher, DefaultInputMatcher } from '@app/user-form.error-matcher';
+import {
+  PasswordMatcher,
+  DefaultInputMatcher,
+} from '@app/user-form.error-matcher';
+import { SignupService } from '@app/services/signup.service';
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss'],
 })
 export class SignupComponent implements OnInit {
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private signupService: SignupService
+  ) {}
 
   signUpForm = this.formBuilder.group(
     {
@@ -30,7 +38,10 @@ export class SignupComponent implements OnInit {
   passwordMatcher = new PasswordMatcher();
 
   public addUser(): void {
-    console.warn(this.signUpForm.value);
+    this.signupService.createUser(
+      this.userSignUp.email.value,
+      this.userSignUp.password.value
+    );
   }
 
   public getErrorMessageEmail(): string | undefined {
