@@ -32,20 +32,24 @@ export class LoginComponent implements OnInit {
   hide = false;
   defaultInputMatcher = new DefaultInputMatcher();
 
-  public getErrorMessageEmail(): string | undefined {
+  public getErrorMessageEmail(): string {
     if (this.logInForm.controls[`email`].hasError('required')) {
       return 'Este campo no puede quedar vacío.';
     }
     if (this.logInForm.controls[`email`].hasError('email')) {
       return 'Debes introducir una dirección de correo electrónico válida';
+    } else {
+      return '';
     }
   }
-  public getErrorMessagePassword(): string | undefined {
+  public getErrorMessagePassword(): string {
     if (this.logInForm.controls[`password`].hasError('required')) {
       return 'Este campo no puede quedar vacío.';
     }
     if (this.logInForm.controls[`password`].hasError('minlength')) {
       return 'Debes introducir una contraseña de más de 8 caracteres.';
+    } else {
+      return '';
     }
   }
 
@@ -53,9 +57,9 @@ export class LoginComponent implements OnInit {
     this.loginService
       .logInUser(this.usersLogIn.email.value, this.usersLogIn.password.value)
       .then(() => {
-        this.router.navigateByUrl('/profile');
+        this.router.navigateByUrl('');
       })
-      .catch(() => console.log('hay un error'));
+      .catch((error) => console.log(error));
   }
   ngOnInit(): void {}
 }

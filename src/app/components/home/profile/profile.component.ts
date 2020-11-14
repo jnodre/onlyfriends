@@ -18,7 +18,7 @@ export class ProfileComponent implements OnInit {
     private patchuserService: PatchuserService,
     private getuserService: GetuserService
   ) {
-    this.user = this.authService.setCurrentSession();
+    this.user = JSON.parse(this.authService.setCurrentSession() || '{}') ;
   }
 
   public addHobbies(): void {
@@ -26,7 +26,8 @@ export class ProfileComponent implements OnInit {
     this.patchuserService.editHobbies(this.user._id, this.hobbies).then(() => {
       this.getuserService
         .getUser(this.user._id)
-        .then((res) => (this.user = res));
+        .then((res) => (this.user = res))
+        .catch((error) => console.log(error));
     });
   }
 

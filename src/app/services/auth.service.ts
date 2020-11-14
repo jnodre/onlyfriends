@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router, CanActivate } from '@angular/router';
+import { User } from '@int/user';
 
 @Injectable({
   providedIn: 'root',
@@ -8,11 +9,11 @@ import { Router, CanActivate } from '@angular/router';
 export class AuthService implements CanActivate {
   constructor(public jwtHelper: JwtHelperService, public router: Router) {}
 
-  public setCurrentSession(): any {
+  public setCurrentSession(): string | null{
     return localStorage.getItem('user');
   }
 
-  public isAuthenticated(): any {
+  public isAuthenticated(): boolean {
     const token = localStorage.getItem('token') || undefined;
     return !this.jwtHelper.isTokenExpired(token);
   }

@@ -32,8 +32,7 @@ export class SignupComponent implements OnInit {
     confirmPassword: this.signUpForm.controls.confirmPassword,
   };
 
-  // tslint:disable-next-line:no-inferrable-types
-  hide: boolean = false;
+  hide = false;
   defaultInputMatcher = new DefaultInputMatcher();
   passwordMatcher = new PasswordMatcher();
 
@@ -44,28 +43,34 @@ export class SignupComponent implements OnInit {
     );
   }
 
-  public getErrorMessageEmail(): string | undefined {
+  public getErrorMessageEmail(): string {
     if (this.signUpForm.controls[`email`].hasError('required')) {
       return 'Este campo no puede quedar vacío.';
     }
     if (this.signUpForm.controls[`email`].hasError('email')) {
       return 'Debes introducir una dirección de correo electrónico válida';
+    } else {
+      return '';
     }
   }
-  public getErrorMessagePassword(): string | undefined {
+  public getErrorMessagePassword(): string {
     if (this.signUpForm.controls[`password`].hasError('required')) {
       return 'Este campo no puede quedar vacío.';
     }
     if (this.signUpForm.controls[`password`].hasError('minlength')) {
       return 'Debes introducir una contraseña de más de 8 caracteres.';
+    } else {
+      return '';
     }
   }
-  public getErrorMessageConfirmPassword(): string | undefined {
+  public getErrorMessageConfirmPassword(): string {
     if (this.signUpForm.controls[`confirmPassword`].hasError('required')) {
       return 'Este campo no puede quedar vacío.';
     }
     if (this.signUpForm.hasError('match')) {
       return 'Las contraseñas deben de ser la misma.';
+    } else {
+      return '';
     }
   }
 

@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import axios from 'axios';
+import { User } from '@int/user';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -8,7 +10,7 @@ export class GetuserService {
 
   constructor() {}
 
-  public getUser(id: string): Promise<any> {
+  public getUser(id: string): Promise<User> {
     return axios.get(`${this.dburl}${id}`).then((res) => res.data);
   }
 }
