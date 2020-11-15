@@ -22,8 +22,8 @@ export class ProfileComponent implements OnInit {
   selectable = true;
   removable = true;
   separatorKeysCodes: number[] = [ENTER, COMMA];
-  fruitCtrl = new FormControl();
-  filteredFruits: Observable<string[]>;
+  hobbyCtrl = new FormControl();
+  filteredHobbies: Observable<string[]>;
   hobbies: string[] = [];
   allHobbies: string[] = [
     'Fútbol',
@@ -54,20 +54,19 @@ export class ProfileComponent implements OnInit {
     'StartUps',
   ];
   @Input() user!: User;
-  @ViewChild('fruitInput') fruitInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('hobbyInput') hobbyInput!: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete!: MatAutocomplete;
 
   constructor(private patchuserService: PatchuserService) {
-    this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
+    this.filteredHobbies = this.hobbyCtrl.valueChanges.pipe(
       startWith(null),
-      map((fruit: string | null) =>
-        fruit ? this._filter(fruit) : this.allHobbies.slice()
+      map((hobby: string | null) =>
+        hobby ? this._filter(hobby) : this.allHobbies.slice()
       )
     );
   }
 
-  public addHobbies(): void {
-    this.hobbies.push(this.hobby);
+  public changeHobbies(): void {
     if (this.user) {
       this.patchuserService.editHobbies(this.user._id, this.hobbies);
     } else {
@@ -78,9 +77,9 @@ export class ProfileComponent implements OnInit {
     const input = event.input;
     const value = event.value;
 
-    // Add our fruit
     if ((value || '').trim()) {
       this.hobbies.push(value.trim());
+
     }
 
     // Reset the input value
@@ -88,29 +87,35 @@ export class ProfileComponent implements OnInit {
       input.value = '';
     }
 
-    this.fruitCtrl.setValue(null);
+    this.hobbyCtrl.setValue(null);
   }
 
-  remove(fruit: string): void {
-    const index = this.hobbies.indexOf(fruit);
+  remove(hobby: string): void {
+    const index = this.hobbies.indexOf(hobby);
 
     if (index >= 0) {
       this.hobbies.splice(index, 1);
+      this.changeHobbies();
+
     }
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
     this.hobbies.push(event.option.viewValue);
-    this.fruitInput.nativeElement.value = '';
-    this.fruitCtrl.setValue(null);
+    this.hobbyInput.nativeElement.value = '';
+    this.hobbyCtrl.setValue(null);
+    this.changeHobbies();
+
   }
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
 
     return this.allHobbies.filter(
-      (fruit) => fruit.toLowerCase().indexOf(filterValue) === 0
+      (hobby) => hobby.toLowerCase().indexOf(filterValue) === 0
     );
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.hobbies = this.user.hobbies;
+  }
 }
