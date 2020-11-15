@@ -17,7 +17,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ProfileComponent } from './components/home/profile/profile.component';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { HomeComponent } from './components/home/home.component';
-
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatTooltipModule } from '@angular/material/tooltip';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +40,8 @@ import { HomeComponent } from './components/home/home.component';
     MatAutocompleteModule,
     ReactiveFormsModule,
     MatCheckboxModule,
+    FlexLayoutModule,
+    MatTooltipModule,
   ],
   providers: [
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },

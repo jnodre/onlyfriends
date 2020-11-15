@@ -1,2 +1,22 @@
-<app-profile></app-profile>
-<button (click)="logOut()">Cerrar sesión</button>
+<div class="main-container">
+  <div class="main-bar">
+    <p>Mi Perfil</p>
+    <div class="profile-name">
+      <p>{{ user.email }}.</p>
+
+      <button mat-icon-button>
+        <mat-icon
+          (click)="logOut()"
+          #tooltip="matTooltip"
+          matTooltip="Cerrar sesión"
+          >logout</mat-icon
+        >
+      </button>
+    </div>
+  </div>
+  <div class="grid">
+    <div></div>
+    <app-profile [user]="user"></app-profile>
+    <div></div>
+  </div>
+</div>

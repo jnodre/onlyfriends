@@ -1,9 +1,11 @@
 .inputContainer {
   display: flex;
   flex-direction: column;
+  place-content: center;
   width: 80%;
+  height: 100%;
   margin: 0 auto;
-  padding: 1.5em;
+
 }
 .form {
   display: flex;

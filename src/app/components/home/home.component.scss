@@ -1,0 +1,33 @@
+.main-container {
+  height: 100%;
+}
+
+.main-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  place-items: center;
+  height: 8%;
+  padding: 0px 15px;
+  background: #3f51b5;
+  color: white;
+  font-size: 1.2em;
+  p {
+    margin: 0px;
+  }
+  box-shadow: 0px 0px 10px rgb(167, 167, 167);
+  div {
+    display: flex;
+    place-items: center;
+  }
+}
+.grid {
+  height: 91.5%;
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  div {
+    border-left: 1px solid gray;
+    border-right: 1px solid gray;
+    height: 100%;
+  }
+}

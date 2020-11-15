@@ -1,9 +1,41 @@
-<p>Has iniciado sesión como {{ user.email }}.</p>
-<p>Estos son tus hobbies:</p>
-<ul *ngFor="let hobby of user.hobbies">
-  <li>{{ hobby }}</li>
-</ul>
+<div class="main-container">
+  <p>Estos son tus hobbies:</p>
+  <ul *ngFor="let hobby of user.hobbies">
+    <li>{{ hobby }}</li>
+  </ul>
 
-<input type="text" [(ngModel)]="hobby" />
+  <input type="text" [(ngModel)]="hobby" />
 
-<button (click)="addHobbies()">Añadir hobby</button>
+  <button mat-icon-button>
+    <mat-icon (click)="addHobbies()" #tooltip="matTooltip" matTooltip="Añadir"
+      >add</mat-icon
+    >
+  </button>
+</div>
+
+
+<mat-form-field>
+  <mat-chip-list #chipList aria-label="Fruit selection">
+    <mat-chip
+      *ngFor="let hobby of hobbies"
+      [selectable]="selectable"
+      [removable]="removable"
+      (removed)="remove(hobby)">
+      {{hobby}}
+      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+    </mat-chip>
+    <input
+      placeholder="Selecciona tus hobbies..."
+      #fruitInput
+      [formControl]="fruitCtrl"
+      [matAutocomplete]="auto"
+      [matChipInputFor]="chipList"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      (matChipInputTokenEnd)="add($event)">
+  </mat-chip-list>
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+    <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
+      {{fruit}}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
