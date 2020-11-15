@@ -1,4 +1,13 @@
-<mat-form-field>
+
+<!--HOBBIES-->
+<mat-card class="card">
+  <div class="section-title">
+<p class="card-title">Hobbies</p>
+<p class="card-info">Selecciona o edita tus hobbies</p>
+<mat-icon class="card-icon">favorite</mat-icon>
+
+  </div>
+<mat-form-field class="hobbiesForm">
   <mat-chip-list #chipList aria-label="Hobby selection">
     <mat-chip
       *ngFor="let hobby of hobbies"
@@ -24,3 +33,4 @@
   </mat-autocomplete>
   
 </mat-form-field>
+</mat-card>

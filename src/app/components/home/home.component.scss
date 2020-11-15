@@ -24,10 +24,20 @@
 .grid {
   height: 91.5%;
   display: grid;
-  grid-template-columns: 1fr 4fr 1fr;
+  grid-template-columns: 1fr;
+  justify-items: center;
   div {
     border-left: 1px solid gray;
     border-right: 1px solid gray;
     height: 100%;
+  }
+  :first-child{
+    display:none
+  }
+  :last-child{
+    display: none
+  }
+  :nth-child(2){
+    width: 80%;
   }
 }

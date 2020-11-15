@@ -19,6 +19,10 @@ import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { HomeComponent } from './components/home/home.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatCardModule} from '@angular/material/card';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +46,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatCheckboxModule,
     FlexLayoutModule,
     MatTooltipModule,
+    MatDividerModule,
+    MatCardModule
   ],
   providers: [
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
