@@ -1,0 +1,36 @@
+
+<!--HOBBIES-->
+<mat-card class="card">
+  <div class="section-title">
+<p class="card-title">Hobbies</p>
+<p class="card-info">Selecciona o edita tus hobbies</p>
+<mat-icon class="card-icon">favorite</mat-icon>
+
+  </div>
+<mat-form-field class="hobbiesForm">
+  <mat-chip-list #chipList aria-label="Hobby selection">
+    <mat-chip
+      *ngFor="let hobby of hobbies"
+      [selectable]="selectable"
+      [removable]="removable"
+      (removed)="remove(hobby)">
+      {{hobby}}
+      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+    </mat-chip>
+    <input
+      placeholder="Selecciona tus hobbies..."
+      #hobbyInput
+      [formControl]="hobbyCtrl"
+      [matAutocomplete]="auto"
+      [matChipInputFor]="chipList"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      (matChipInputTokenEnd)="add($event)">
+  </mat-chip-list>
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+    <mat-option *ngFor="let hobby of filteredHobbies | async" [value]="hobby">
+      {{hobby}}
+    </mat-option>
+  </mat-autocomplete>
+  
+</mat-form-field>
+</mat-card>

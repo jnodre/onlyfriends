@@ -1,0 +1,29 @@
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  place-content: center;
+  height: 100%;
+  margin: 0 auto;
+  background: #E8EAF6;
+  padding: 0 5%;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.rememberMeCheckBox {
+  margin-bottom: 1.34375em;
+}
+.bottomFormText {
+  padding-top: 1.34375em;
+  display: flex;
+  flex-direction: row;
+  place-content: center;
+  :first-child {
+    margin-right: 5px;
+  }
+  a {
+    text-decoration: none;
+  }
+}
