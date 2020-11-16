@@ -1,7 +1,9 @@
 <div class="inputContainer">
+  <mat-card>
+
   <form class="form" [formGroup]="signUpForm">
-    <mat-form-field appearance="fill">
-      <mat-label>Introduce tu direccíon de correo electrónico</mat-label>
+    <mat-form-field appearance="standard">
+      <mat-label>Correo electrónico</mat-label>
       <input
         [errorStateMatcher]="defaultInputMatcher"
         matInput
@@ -13,8 +15,8 @@
       }}</mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Introduce una contraseña</mat-label>
+    <mat-form-field appearance="standard">
+      <mat-label>Contraseña</mat-label>
       <input
         [errorStateMatcher]="defaultInputMatcher"
         [formControl]="userSignUp.password"
@@ -36,8 +38,8 @@
         getErrorMessagePassword()
       }}</mat-error>
     </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>Repite la contraseña</mat-label>
+    <mat-form-field appearance="standard">
+      <mat-label>Repite la contraseña*</mat-label>
       <input
         [errorStateMatcher]="passwordMatcher"
         [formControl]="userSignUp.confirmPassword"
@@ -71,4 +73,5 @@
     <p>¿Ya tienes una cuenta?</p>
     <a routerLink="/login">Inicia sesión</a>
   </div>
+  </mat-card>
 </div>

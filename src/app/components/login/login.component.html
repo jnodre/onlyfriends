@@ -1,63 +1,55 @@
-<div class="inputContainer">
-  <form class="form" [formGroup]="logInForm">
-    <mat-form-field appearance="fill">
-      <mat-label>Introduce tu direccíon de correo electrónico</mat-label>
-      <input
-        [errorStateMatcher]="defaultInputMatcher"
-        matInput
-        name="email"
-        [formControl]="usersLogIn.email"
-        required
-      />
-      <mat-error *ngIf="usersLogIn.email.invalid">{{
-        getErrorMessageEmail()
-      }}</mat-error>
-    </mat-form-field>
+  <div class="inputContainer">
+    <mat-card>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Introduce una contraseña</mat-label>
-      <input
-        [errorStateMatcher]="defaultInputMatcher"
-        [formControl]="usersLogIn.password"
-        name="password"
-        required
-        matInput
-        [type]="!hide ? 'password' : 'text'"
-      />
-      <button
-        mat-icon-button
-        matSuffix
-        (click)="hide = !hide"
-        [attr.aria-label]="'Hide password'"
-        [attr.aria-pressed]="hide"
-      >
-        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+    <form class="form" [formGroup]="logInForm">
+      <mat-form-field appearance="standard">
+        <mat-label>Correo electrónico</mat-label>
+        <input
+          [errorStateMatcher]="defaultInputMatcher"
+          matInput
+          name="email"
+          [formControl]="usersLogIn.email"
+          required
+        />
+        <mat-error *ngIf="usersLogIn.email.invalid">{{
+          getErrorMessageEmail()
+        }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="standard">
+        <mat-label>Contraseña</mat-label>
+        <input
+          [errorStateMatcher]="defaultInputMatcher"
+          [formControl]="usersLogIn.password"
+          name="password"
+          required
+          matInput
+          [type]="!hide ? 'password' : 'text'"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+        >
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+        <mat-error *ngIf="usersLogIn.password.invalid">{{
+          getErrorMessagePassword()
+        }}</mat-error>
+      </mat-form-field>
+      <!--
+    <mat-checkbox class="rememberMeCheckBox">Recuérdame</mat-checkbox>-->
+      <button (click)="logIn()" mat-raised-button color="primary">
+        Iniciar sesión
       </button>
-      <mat-error *ngIf="usersLogIn.password.invalid">{{
-        getErrorMessagePassword()
-      }}</mat-error>
-    </mat-form-field>
-    <mat-checkbox class="rememberMeCheckBox">Recuérdame</mat-checkbox>
-    <!-- <button
-      [disabled]="!logInForm.valid"
-      (click)="logIn()"
-      mat-raised-button
-      color="primary"
-    >
-      Iniciar sesión
-    </button> -->
-    <button
-      (click)="logIn()"
-      mat-raised-button
-      color="primary"
-    >
-      Iniciar sesión
-    </button>
-  </form>
+    </form>
 
-  <div class="bottomFormText">
-    <p>¿Aún no tienes una cuenta?</p>
-    <a routerLink="/signup">Regístrate</a>
+    <div class="bottomFormText">
+      <p>¿Aún no tienes una cuenta?</p>
+      <a routerLink="/signup">Regístrate</a>
+    </div>
+  </mat-card>
+
   </div>
-
-</div>
