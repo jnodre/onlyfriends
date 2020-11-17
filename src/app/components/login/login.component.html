@@ -41,9 +41,11 @@
       </mat-form-field>
       <!--
     <mat-checkbox class="rememberMeCheckBox">Recuérdame</mat-checkbox>-->
-      <button (click)="logIn()" mat-raised-button color="primary">
+      <button       [disabled]="!logInForm.valid"
+       (click)="logIn()" mat-raised-button color="primary">
         Iniciar sesión
       </button>
+      <mat-error class="errorMessage" *ngIf="errorLogin">{{getErrorMessageAccount()}}</mat-error>        
     </form>
 
     <div class="bottomFormText">

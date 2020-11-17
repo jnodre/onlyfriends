@@ -6,6 +6,8 @@ import {
   DefaultInputMatcher,
 } from '@app/user-form.error-matcher';
 import { SignupService } from '@app/services/signup.service';
+import { LoginService } from '@app/services/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -15,7 +17,9 @@ import { SignupService } from '@app/services/signup.service';
 export class SignupComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
-    private signupService: SignupService
+    private signupService: SignupService,
+    private loginService: LoginService,
+    private router: Router
   ) {}
 
   signUpForm = this.formBuilder.group(
@@ -41,6 +45,11 @@ export class SignupComponent implements OnInit {
       this.userSignUp.email.value,
       this.userSignUp.password.value
     );
+    this.loginService
+      .logInUser(this.userSignUp.email.value, this.userSignUp.password.value)
+      .then(() => {
+        this.router.navigateByUrl('');
+      });
   }
 
   public getErrorMessageEmail(): string {

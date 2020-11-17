@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(8)]],
   });
-
+  errorLogin = false;
   usersLogIn: UsersLogIn = {
     password: this.logInForm.controls.password,
     email: this.logInForm.controls.email,
@@ -52,6 +52,13 @@ export class LoginComponent implements OnInit {
       return '';
     }
   }
+  public getErrorMessageAccount(): string {
+    if (this.errorLogin) {
+      return 'No se ha podido encontrar tu cuenta de Onlyfriends.';
+    } else {
+      return '';
+    }
+  }
 
   public logIn(): void {
     this.loginService
@@ -59,7 +66,7 @@ export class LoginComponent implements OnInit {
       .then(() => {
         this.router.navigateByUrl('');
       })
-      .catch((error) => console.log(error));
+      .catch(() => (this.errorLogin = true));
   }
   ngOnInit(): void {}
 }
