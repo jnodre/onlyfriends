@@ -1,36 +1,86 @@
+<form class="form" [formGroup]="profileForm">
+  <!--DATOS PERSONALES-->
+  <mat-card class="card">
+    <div class="section-title">
+      <p class="card-title">Datos personales</p>
+      <p class="card-info">Edita tus datos personales</p>
+      <mat-icon class="card-icon">person</mat-icon>
+    </div>
+    <p>{{ user.name }}</p>
 
-<!--HOBBIES-->
-<mat-card class="card">
-  <div class="section-title">
-<p class="card-title">Hobbies</p>
-<p class="card-info">Selecciona o edita tus hobbies</p>
-<mat-icon class="card-icon">favorite</mat-icon>
+    <mat-form-field class="hobbiesForm">
+      <input matInput [formControl]="userProfile.name" type="text"           name="name"
+      />
+    </mat-form-field>
+    <button (click)="changeName()">Cambiar</button>
+    <mat-form-field class="hobbiesForm">
+      <input matInput [formControl]="userProfile.gender" type="text"           name="gender"
+      />
+    </mat-form-field>
+    <button (click)="changeGender()">Cambiar</button>
 
-  </div>
-<mat-form-field class="hobbiesForm">
-  <mat-chip-list #chipList aria-label="Hobby selection">
-    <mat-chip
-      *ngFor="let hobby of hobbies"
-      [selectable]="selectable"
-      [removable]="removable"
-      (removed)="remove(hobby)">
-      {{hobby}}
-      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-    </mat-chip>
-    <input
-      placeholder="Selecciona tus hobbies..."
-      #hobbyInput
-      [formControl]="hobbyCtrl"
-      [matAutocomplete]="auto"
-      [matChipInputFor]="chipList"
-      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-      (matChipInputTokenEnd)="add($event)">
-  </mat-chip-list>
-  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-    <mat-option *ngFor="let hobby of filteredHobbies | async" [value]="hobby">
-      {{hobby}}
-    </mat-option>
-  </mat-autocomplete>
-  
-</mat-form-field>
-</mat-card>
+  </mat-card>
+
+  <!--HOBBIES-->
+  <mat-card class="card">
+    <div class="section-title">
+      <p class="card-title">Hobbies</p>
+      <p class="card-info">Selecciona o edita tus hobbies</p>
+      <mat-icon class="card-icon">favorite</mat-icon>
+    </div>
+    <mat-form-field class="hobbiesForm">
+      <mat-chip-list #chipList aria-label="Hobby selection">
+        <mat-chip
+          *ngFor="let hobby of hobbies"
+          [selectable]="selectable"
+          [removable]="removable"
+          (removed)="remove(hobby)"
+        >
+          {{ hobby }}
+          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+        </mat-chip>
+        <input
+          placeholder="Selecciona tus hobbies..."
+          #hobbyInput
+          [formControl]="hobbyCtrl"
+          [matAutocomplete]="auto"
+          [matChipInputFor]="chipList"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          (matChipInputTokenEnd)="add($event)"
+        />
+      </mat-chip-list>
+      <mat-autocomplete
+        #auto="matAutocomplete"
+        (optionSelected)="selected($event)"
+      >
+        <mat-option
+          *ngFor="let hobby of filteredHobbies | async"
+          [value]="hobby"
+        >
+          {{ hobby }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </mat-card>
+  <!--EMAIL Y PASSWORD-->
+  <mat-card class="card">
+    <div class="section-title">
+      <p class="card-title">Datos de acceso</p>
+      <p class="card-info">Edita tus datos de acceso</p>
+      <mat-icon class="card-icon">lock</mat-icon>
+    </div>
+    <p>{{ user.name }}</p>
+
+    <mat-form-field class="hobbiesForm">
+      <input matInput [formControl]="userProfile.email" type="text"           name="mail"
+      />
+    </mat-form-field>
+    <button (click)="changeEmail()">Cambiar</button>
+    <mat-form-field class="hobbiesForm">
+      <input matInput [formControl]="userProfile.password" type="text"           name="password"
+      />
+    </mat-form-field>
+    <button (click)="changePassword()">Cambiar</button>
+
+  </mat-card>
+</form>

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ElementRef, ViewChild } from '@angular/core';
 import { PatchuserService } from '@app/services/patchuser.service';
 import { User } from '@int/user';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormBuilder, Validators } from '@angular/forms';
 import {
   MatAutocompleteSelectedEvent,
   MatAutocomplete,
@@ -17,6 +17,18 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
+  profileForm = this.formBuilder.group({
+    email: [''],
+    name: [''],
+    gender: [''],
+    password: [''],
+  });
+  userProfile = {
+    email: this.profileForm.controls.email,
+    name: this.profileForm.controls.name,
+    gender: this.profileForm.controls.gender,
+    password: this.profileForm.controls.gender,
+  };
   hobby = '';
   visible = true;
   selectable = true;
@@ -57,7 +69,10 @@ export class ProfileComponent implements OnInit {
   @ViewChild('hobbyInput') hobbyInput!: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete!: MatAutocomplete;
 
-  constructor(private patchuserService: PatchuserService) {
+  constructor(
+    private patchuserService: PatchuserService,
+    private formBuilder: FormBuilder
+  ) {
     this.filteredHobbies = this.hobbyCtrl.valueChanges.pipe(
       startWith(null),
       map((hobby: string | null) =>
@@ -73,13 +88,54 @@ export class ProfileComponent implements OnInit {
       console.log(this.user);
     }
   }
+  public changeName(): void {
+    if (this.user) {
+      this.patchuserService.editName(
+        this.user._id,
+        this.userProfile.name.value
+      );
+    } else {
+      console.log(this.user);
+    }
+  }
+  public changeGender(): void {
+    if (this.user) {
+      this.patchuserService.editGender(
+        this.user._id,
+        this.userProfile.gender.value
+      );
+    } else {
+      console.log(this.user);
+    }
+  }
+  public changeEmail(): void {
+    console.log(this.userProfile.email.value);
+    if (this.user) {
+      this.patchuserService.editEmail(
+        this.user._id,
+        this.userProfile.email.value
+      );
+    } else {
+      console.log(this.user);
+    }
+  }
+  public changePassword(): void {
+    if (this.user) {
+      this.patchuserService.editPassword(
+        this.user._id,
+        this.userProfile.password.value
+      );
+    } else {
+      console.log(this.user);
+    }
+  }
+
   add(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;
 
     if ((value || '').trim()) {
       this.hobbies.push(value.trim());
-
     }
 
     // Reset the input value
@@ -96,7 +152,6 @@ export class ProfileComponent implements OnInit {
     if (index >= 0) {
       this.hobbies.splice(index, 1);
       this.changeHobbies();
-
     }
   }
 
@@ -105,7 +160,6 @@ export class ProfileComponent implements OnInit {
     this.hobbyInput.nativeElement.value = '';
     this.hobbyCtrl.setValue(null);
     this.changeHobbies();
-
   }
 
   private _filter(value: string): string[] {

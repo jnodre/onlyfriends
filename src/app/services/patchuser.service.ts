@@ -9,9 +9,29 @@ export class PatchuserService {
   dburl = 'http://localhost:3000/users/';
   constructor() {}
 
-  public editHobbies(id: string, data: any): Promise<User> {
+  public editHobbies(id: string, data: string[]): Promise<User> {
     return axios.patch(this.dburl + id + '/hobbies', {
       hobbies: data,
+    });
+  }
+  public editName(id: string, data: string): Promise<User> {
+    return axios.patch(this.dburl + id + '/name', {
+      name: data,
+    });
+  }
+  public editGender(id: string, data: string): Promise<User> {
+    return axios.patch(this.dburl + id + '/gender', {
+      gender: data,
+    });
+  }
+  public editEmail(id: string, data: string): Promise<User> {
+    return axios.patch(this.dburl + id + '/email', {
+      email: data,
+    });
+  }
+  public editPassword(id: string, data: string): Promise<User> {
+    return axios.patch(this.dburl + id + '/password', {
+      password: data,
     });
   }
 }
