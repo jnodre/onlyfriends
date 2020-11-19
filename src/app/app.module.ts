@@ -21,6 +21,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatCardModule} from '@angular/material/card';
+import {MatDialogModule} from '@angular/material/dialog';
+import { MatchesComponent } from './components/home/matches/matches.component';
+import { ChatComponent } from './components/home/chat/chat.component';
 
 
 @NgModule({
@@ -30,6 +33,8 @@ import {MatCardModule} from '@angular/material/card';
     LoginComponent,
     ProfileComponent,
     HomeComponent,
+    MatchesComponent,
+    ChatComponent,
   ],
   imports: [
     FormsModule,
@@ -47,7 +52,8 @@ import {MatCardModule} from '@angular/material/card';
     FlexLayoutModule,
     MatTooltipModule,
     MatDividerModule,
-    MatCardModule
+    MatCardModule,
+    MatDialogModule
   ],
   providers: [
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },

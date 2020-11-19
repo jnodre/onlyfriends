@@ -1,5 +1,5 @@
 .main-container {
-  height: 100%;
+  height: 108%;
 }
 
 .main-bar {
@@ -39,5 +39,25 @@
   }
   :nth-child(2){
     width: 80%;
+  }
+}
+.bottom-menu{
+  height: 8%;
+  position: sticky;
+  bottom: 0;
+  background: #3f51b5;
+  color: white;
+  ul{
+    display: flex;
+    place-content: space-around;
+    list-style: none;
+    padding-left: 0px;
+    place-items: center;
+    height: 100%;
+    margin: 0px;
+  }
+  a{
+    text-decoration: none;
+    color: white;
   }
 }

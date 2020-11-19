@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, ElementRef, ViewChild } from '@angular/core';
 import { PatchuserService } from '@app/services/patchuser.service';
+import { AuthService } from '@app/services/auth.service';
 import { User } from '@int/user';
 import { FormControl, FormBuilder, Validators } from '@angular/forms';
 import {
@@ -55,7 +56,7 @@ export class ProfileComponent implements OnInit {
     'Negocios',
     'StartUps',
   ];
-  @Input() user!: User;
+  user: User;
 
   profileForm = this.formBuilder.group({
     email: [''],
@@ -78,7 +79,8 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private patchuserService: PatchuserService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private authService: AuthService
   ) {
     this.filteredHobbies = this.hobbyCtrl.valueChanges.pipe(
       startWith(null),
@@ -86,6 +88,7 @@ export class ProfileComponent implements OnInit {
         hobby ? this._filter(hobby) : this.allHobbies.slice()
       )
     );
+    this.user = JSON.parse(this.authService.setCurrentSession() || '{}');
   }
   public changeHobbies(): void {
     if (this.user) {

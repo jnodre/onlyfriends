@@ -12,7 +12,6 @@ import { AuthService } from '@app/services/auth.service';
 export class HomeComponent implements OnInit {
   constructor(
     private authService: AuthService,
-    private getuserService: GetuserService,
     private router: Router
   ) {
     this.user = JSON.parse(this.authService.setCurrentSession() || '{}');
