@@ -17,19 +17,9 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-  profileForm = this.formBuilder.group({
-    email: [''],
-    name: [''],
-    gender: [''],
-    password: [''],
-  });
-  userProfile = {
-    email: this.profileForm.controls.email,
-    name: this.profileForm.controls.name,
-    gender: this.profileForm.controls.gender,
-    password: this.profileForm.controls.gender,
-  };
   hobby = '';
+  genders: string[] = ['Masculino', 'Femenino', 'Otros'];
+  genderValue = '';
   visible = true;
   selectable = true;
   removable = true;
@@ -66,6 +56,23 @@ export class ProfileComponent implements OnInit {
     'StartUps',
   ];
   @Input() user!: User;
+
+  profileForm = this.formBuilder.group({
+    email: [''],
+    name: [''],
+    password: [''],
+  });
+
+  userProfile = {
+    email: this.profileForm.controls.email,
+    emailChange: false,
+    name: this.profileForm.controls.name,
+    nameChange: false,
+    genderChange: false,
+    password: this.profileForm.controls.password,
+    passwordChange: false,
+    hobbyChange: false,
+  };
   @ViewChild('hobbyInput') hobbyInput!: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete!: MatAutocomplete;
 
@@ -80,10 +87,13 @@ export class ProfileComponent implements OnInit {
       )
     );
   }
-
   public changeHobbies(): void {
     if (this.user) {
       this.patchuserService.editHobbies(this.user._id, this.hobbies);
+      this.userProfile.hobbyChange = true;
+      setTimeout(() => {
+        this.userProfile.hobbyChange = false;
+      }, 1500);
     } else {
       console.log(this.user);
     }
@@ -94,27 +104,38 @@ export class ProfileComponent implements OnInit {
         this.user._id,
         this.userProfile.name.value
       );
+      this.userProfile.nameChange = true;
+      setTimeout(() => {
+        this.userProfile.nameChange = false;
+      }, 1500);
+      this.profileForm.controls.name.setValue('');
     } else {
       console.log(this.user);
     }
   }
   public changeGender(): void {
     if (this.user) {
-      this.patchuserService.editGender(
-        this.user._id,
-        this.userProfile.gender.value
-      );
+      this.patchuserService.editGender(this.user._id, this.genderValue);
+      this.userProfile.genderChange = true;
+      setTimeout(() => {
+        this.userProfile.genderChange = false;
+      }, 1500);
+      this.genderValue = '';
     } else {
       console.log(this.user);
     }
   }
   public changeEmail(): void {
-    console.log(this.userProfile.email.value);
     if (this.user) {
       this.patchuserService.editEmail(
         this.user._id,
         this.userProfile.email.value
       );
+      this.userProfile.emailChange = true;
+      setTimeout(() => {
+        this.userProfile.emailChange = false;
+      }, 1500);
+      this.profileForm.controls.email.setValue('');
     } else {
       console.log(this.user);
     }
@@ -125,8 +146,37 @@ export class ProfileComponent implements OnInit {
         this.user._id,
         this.userProfile.password.value
       );
+      this.userProfile.passwordChange = true;
+      setTimeout(() => {
+        this.userProfile.passwordChange = false;
+      }, 1500);
+      this.profileForm.controls.password.setValue('');
     } else {
       console.log(this.user);
+    }
+  }
+  public changePersonal(name: string, gender: string): void {
+    if (name.length > 1) {
+      this.changeName();
+    } else {
+      console.log(this.user);
+    }
+    if (gender.length > 1) {
+      this.changeGender();
+    } else {
+      console.log('error');
+    }
+  }
+  public changeAccess(email: string, password: string): void {
+    if (email.length > 1) {
+      this.changeEmail();
+    } else {
+      console.log(this.user);
+    }
+    if (password.length > 1) {
+      this.changePassword();
+    } else {
+      console.log('error');
     }
   }
 
