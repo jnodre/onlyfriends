@@ -16,7 +16,6 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     private loginService: LoginService,
-    private getUserService: GetuserService
   ) {}
 
   logInForm = this.formBuilder.group({
@@ -64,7 +63,7 @@ export class LoginComponent implements OnInit {
     this.loginService
       .logInUser(this.usersLogIn.email.value, this.usersLogIn.password.value)
       .then(() => {
-        this.router.navigateByUrl('');
+        this.router.navigateByUrl('/matches');
       })
       .catch(() => (this.errorLogin = true));
   }

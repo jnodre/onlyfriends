@@ -1,1 +1,15 @@
-<p>matches works!</p>
+
+
+<ul class="match" *ngFor="let friend of friends">
+    <div class="match-pic">
+    <img src="https://photos1.blogger.com/blogger/6582/403/1600/scarlettjohansson.jpg" alt="">
+</div>
+<div class="match-data">
+  <li>{{ friend.email }}</li>
+  <ul *ngFor="let hobbie of friend.hobbies">
+      <li class="hobbies">{{hobbie}}</li>
+  </ul>
+  </div>
+  <button click="match()">Match</button>
+</ul>
+
