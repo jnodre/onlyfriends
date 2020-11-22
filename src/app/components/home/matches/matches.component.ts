@@ -23,8 +23,7 @@ export class MatchesComponent implements OnInit {
   friends: any[] = [];
   public getMatches(id: string): void {
     this.friendsService.getMatches(id).then((res: any) => {
-      this.item = Object.entries(res)[0][1];
-      console.log(this.item);
+      this.item = Object.entries(res)[0];
       this.item.forEach((r: any) => {
         this.getMatchesData(r._id);
       });
@@ -36,7 +35,8 @@ export class MatchesComponent implements OnInit {
     });
   }
   public match(id: string): any {
-    console.log(id);
+    this.friends = this.friends.filter((r) => r._id !== id);
+    console.log(this.friends);
     return axios.patch(`http://localhost:3000/users/${this.user._id}/people`, {
       friendId: id,
     });
