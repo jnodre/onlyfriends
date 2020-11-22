@@ -1,15 +1,31 @@
-
-
 <ul class="match" *ngFor="let friend of friends">
-    <div class="match-pic">
-    <img src="https://photos1.blogger.com/blogger/6582/403/1600/scarlettjohansson.jpg" alt="">
-</div>
-<div class="match-data">
-  <li>{{ friend.email }}</li>
-  <ul *ngFor="let hobbie of friend.hobbies">
-      <li class="hobbies">{{hobbie}}</li>
-  </ul>
+  <div class="match-pic">
+    <img
+      src="https://photos1.blogger.com/blogger/6582/403/1600/scarlettjohansson.jpg"
+      alt=""
+    />
+    <div class="text-image">
+      <p class="name">{{ friend.email }}</p>
+      <p class="bio">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      </p>
+      <div class="match-data">
+        <div>
+          <ul>
+            <li *ngFor="let hobbie of friend.hobbies">
+              <span class="hobbies">{{ hobbie }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
-  <button click="match()">Match</button>
+  <div class="buttons">
+    <button mat-raised-button color="warn">
+      <mat-icon>clear </mat-icon>
+    </button>
+    <button mat-raised-button color="primary" (click)="match(friend._id)">
+      <mat-icon>favorite </mat-icon>
+    </button>
+  </div>
 </ul>
-

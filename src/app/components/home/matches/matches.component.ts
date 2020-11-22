@@ -21,16 +21,14 @@ export class MatchesComponent implements OnInit {
   item: any;
   array: string[] = [];
   friends: any[] = [];
-  id = '5fb80819f852cb43245177d1';
   public getMatches(id: string): void {
     this.friendsService.getMatches(id).then((res: any) => {
-      this.item = Object.entries(res)[1][1];
+      this.item = Object.entries(res)[0][1];
+      console.log(this.item);
       this.item.forEach((r: any) => {
         this.getMatchesData(r._id);
-        console.log(this.friends);
       });
     });
-    console.log(this.friends);
   }
   public getMatchesData(id: string): void {
     this.getUserService.getUser(id).then((r) => {
@@ -38,11 +36,10 @@ export class MatchesComponent implements OnInit {
     });
   }
   public match(id: string): any {
-    return axios
-      .patch(`http://localhost:3000/${this.user.id}/people`, {
-        friends: id,
-      })
-      .then((r) => console.log(r));
+    console.log(id);
+    return axios.patch(`http://localhost:3000/users/${this.user._id}/people`, {
+      friendId: id,
+    });
   }
   ngOnInit(): void {
     this.getMatches(this.user._id);
