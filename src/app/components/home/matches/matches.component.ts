@@ -40,6 +40,10 @@ export class MatchesComponent implements OnInit {
       friendId: id,
     });
   }
+  public no_match(id: string): any {
+    this.friends = this.friends.filter((r) => r._id !== id);
+  }
+
   ngOnInit(): void {
     this.getMatches(this.user._id);
   }
