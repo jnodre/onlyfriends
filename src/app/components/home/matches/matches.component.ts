@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FriendsService } from '@app/services/friends.service';
 import { AuthService } from '@app/services/auth.service';
 import { GetuserService } from '@app/services/getuser.service';
-import { User } from '@int/user';
 import axios from 'axios';
 @Component({
   selector: 'app-matches',

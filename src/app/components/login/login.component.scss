@@ -4,8 +4,16 @@
   place-content: center;
   height: 100%;
   margin: 0 auto;
-  background: #E8EAF6;
+  background: #e8eaf6;
   padding: 0 5%;
+  img {
+    max-width: 200px;
+    max-height: 200px;
+    border-radius: 50%;
+    margin: 0 auto;
+    margin-top: -40px;
+    margin-bottom: 20px;
+  }
 }
 .form {
   display: flex;
@@ -27,7 +35,7 @@
     text-decoration: none;
   }
 }
-.errorMessage{
-  color:#f44336;
+.errorMessage {
+  color: #f44336;
   font-size: 75%;
 }
