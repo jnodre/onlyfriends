@@ -1,0 +1,47 @@
+<div *ngIf="friends.length==0">
+
+  <div class="no-people" style="text-align:center;margin-top:70px;">
+    <p>Esperando por más personas...</p>
+    <div class="separator"></div>
+    <div class="container">
+        <button class="pulse-button"></button>
+    </div>
+  </div>
+  <div class="separator"></div>
+  <h3 class="no-people-text">Añade más hobbies o actualizalos para encontrar más personas que tengan hobbies en común contigo.</h3>
+</div>
+
+
+<ul class="match" *ngFor="let friend of friends">
+  <div class="match-pic">
+    <img
+      src="https://photos1.blogger.com/blogger/6582/403/1600/scarlettjohansson.jpg"
+      alt=""
+    />
+    <div class="text-image">
+      <p class="name">{{ friend.email }}</p>
+
+      <div class="match-data">
+        <div>
+          <ul>
+            <li *ngFor="let hobbie of friend.hobbies">
+              <span class="hobbies">{{ hobbie }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="buttons">
+    <button mat-raised-button color="warn" (click)="no_match(friend._id)">
+      <mat-icon>thumb_down_alt
+      </mat-icon>
+    </button>
+    <button mat-raised-button color="primary" (click)="match(friend._id)">
+      <mat-icon>thumb_up_alt
+      </mat-icon>
+    </button>
+
+  </div>
+</ul>

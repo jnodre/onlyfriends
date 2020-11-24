@@ -69,7 +69,6 @@
           "options": {
             "browserTarget": "onlyfriends:build",
             "proxyConfig": "proxy.conf.json"
-
           },
           "configurations": {
             "production": {
@@ -129,5 +128,8 @@
       }
     }
   },
-  "defaultProject": "onlyfriends"
+  "defaultProject": "onlyfriends",
+  "cli": {
+    "analytics": false
+  }
 }

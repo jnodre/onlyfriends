@@ -12,11 +12,24 @@
           >logout</mat-icon
         >
       </button>
+
     </div>
   </div>
   <div class="grid">
-    <div></div>
-    <app-profile [user]="user"></app-profile>
+    <div>
+      <app-profile></app-profile>
+    </div>
+     <router-outlet ></router-outlet>
+
     <div></div>
   </div>
 </div>
+<nav class="bottom-menu">
+  <ul>
+    <li>   <a routerLink="matches"> <mat-icon class="card-icon">home</mat-icon></a>
+    </li>
+    <li>    <a routerLink="profile">   <mat-icon class="card-icon">person</mat-icon></a>
+    </li>
+
+  </ul>
+</nav>
