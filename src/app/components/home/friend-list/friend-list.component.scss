@@ -1,0 +1,12 @@
+.container {
+  width: 100vw;
+}
+
+.friend {
+  display: flex;
+  flex-direction: row;
+  place-items: center;
+  :first-child {
+    margin-right: 5px;
+  }
+}

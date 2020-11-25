@@ -6,6 +6,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { ProfileComponent } from './components/home/profile/profile.component';
 import { MatchesComponent } from './components/home/matches/matches.component';
 import { ChatComponent } from './components/home/chat/chat.component';
+import { FriendListComponent } from './components/home/friend-list/friend-list.component';
 import { AuthService as AuthGuard } from '@app/services/auth.service';
 import { UserguardService as UserGuard } from '@app/services/userguard.service';
 const routes: Routes = [
@@ -25,8 +26,12 @@ const routes: Routes = [
       {
         path: 'chat',
         component: ChatComponent,
-      }
-    ]
+      },
+      {
+        path: 'friends',
+        component: FriendListComponent,
+      },
+    ],
   },
   {
     path: 'login',
@@ -37,7 +42,7 @@ const routes: Routes = [
     path: 'signup',
     component: SignupComponent,
     canActivate: [UserGuard],
-  }
+  },
 ];
 
 @NgModule({

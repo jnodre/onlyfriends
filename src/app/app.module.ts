@@ -25,6 +25,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatchesComponent } from './components/home/matches/matches.component';
 import { ChatComponent } from './components/home/chat/chat.component';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
+import { FriendListComponent } from './components/home/friend-list/friend-list.component';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,7 @@ import { IvyCarouselModule } from 'angular-responsive-carousel';
     HomeComponent,
     MatchesComponent,
     ChatComponent,
+    FriendListComponent,
   ],
   imports: [
     FormsModule,
@@ -55,6 +58,7 @@ import { IvyCarouselModule } from 'angular-responsive-carousel';
     MatCardModule,
     MatDialogModule,
     IvyCarouselModule,
+    MatListModule,
   ],
   providers: [
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
