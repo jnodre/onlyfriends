@@ -6,7 +6,7 @@ import axios from 'axios';
   providedIn: 'root',
 })
 export class LoginService {
-  dburl = 'http://localhost:3000/login';
+  dburl = 'http://localhost:3000/auth/login';
 
   constructor() {}
 
@@ -17,8 +17,6 @@ export class LoginService {
         password,
       })
       .then((res) => {
-        localStorage.setItem('token', res.data.token);
-        localStorage.setItem('user', JSON.stringify(res.data.usuario));
         return res.data;
       });
   }

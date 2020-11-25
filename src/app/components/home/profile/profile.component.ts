@@ -56,7 +56,16 @@ export class ProfileComponent implements OnInit {
     'Negocios',
     'StartUps',
   ];
-  user: User;
+  user: User = {
+    name: "",
+    email: "",
+    friends: [],
+    hobbies: [],
+    password: "",
+    photos: [],
+    __v: 0,
+    _id: ""
+  };
 
   profileForm = this.formBuilder.group({
     email: [''],
@@ -88,7 +97,9 @@ export class ProfileComponent implements OnInit {
         hobby ? this._filter(hobby) : this.allHobbies.slice()
       )
     );
-    this.user = JSON.parse(this.authService.setCurrentSession() || '{}');
+    this.authService.setCurrentSession().then(
+      usuario => this.user=usuario
+    );
   }
   public changeHobbies(): void {
     if (this.user) {

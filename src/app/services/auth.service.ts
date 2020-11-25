@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
-import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router, CanActivate } from '@angular/router';
+import axios from 'axios';
+import { User } from '@app/interfaces/user';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService implements CanActivate {
-  constructor(public jwtHelper: JwtHelperService, public router: Router) {}
-
-  public setCurrentSession(): string | null{
-    return localStorage.getItem('user');
+  constructor(public router: Router) {}
+  dburlAuth = 'http://localhost:3000/';
+  public setCurrentSession(): Promise<User>{
+    return axios.get(this.dburlAuth + "auth/usuarioInfo" ).then(res => res.data)
   }
 
-  public isAuthenticated(): boolean {
-    const token = localStorage.getItem('token') || undefined;
-    return !this.jwtHelper.isTokenExpired(token);
+  public isAuthenticated(): Promise<boolean> {
+    return axios.get(this.dburlAuth + "auth/isAuth" ).then(res => res.data.status)
   }
 
   public canActivate(): boolean {

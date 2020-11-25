@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  public logIn(): void {
+  public logIn():  void {
     this.loginService
       .logInUser(this.usersLogIn.email.value, this.usersLogIn.password.value)
       .then(() => {

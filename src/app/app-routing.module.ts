@@ -12,7 +12,7 @@ const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
     children: [
       {
         path: 'profile',
@@ -31,12 +31,12 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
-    canActivate: [UserGuard],
+    // canActivate: [UserGuard],
   },
   {
     path: 'signup',
     component: SignupComponent,
-    canActivate: [UserGuard],
+    // canActivate: [UserGuard],
   }
 ];
 

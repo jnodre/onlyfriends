@@ -24,7 +24,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatchesComponent } from './components/home/matches/matches.component';
 import { ChatComponent } from './components/home/chat/chat.component';
-import { IvyCarouselModule } from 'angular-responsive-carousel';
+// import { IvyCarouselModule } from 'angular-responsive-carousel';
 
 @NgModule({
   declarations: [
@@ -54,7 +54,7 @@ import { IvyCarouselModule } from 'angular-responsive-carousel';
     MatDividerModule,
     MatCardModule,
     MatDialogModule,
-    IvyCarouselModule,
+    // IvyCarouselModule,
   ],
   providers: [
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },

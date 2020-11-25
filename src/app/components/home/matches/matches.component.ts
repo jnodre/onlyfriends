@@ -3,19 +3,20 @@ import { FriendsService } from '@app/services/friends.service';
 import { AuthService } from '@app/services/auth.service';
 import { GetuserService } from '@app/services/getuser.service';
 import axios from 'axios';
+import { User } from '@app/interfaces/user';
 @Component({
   selector: 'app-matches',
   templateUrl: './matches.component.html',
   styleUrls: ['./matches.component.scss'],
 })
 export class MatchesComponent implements OnInit {
-  user;
+  user?: User;
   constructor(
     private friendsService: FriendsService,
     private authService: AuthService,
     private getUserService: GetuserService
   ) {
-    this.user = JSON.parse(this.authService.setCurrentSession() || '{}');
+    this.authService.setCurrentSession().then(usuario => this.user = usuario);
   }
   item: any;
   array: string[] = [];
@@ -36,7 +37,7 @@ export class MatchesComponent implements OnInit {
   public match(id: string): any {
     this.friends = this.friends.filter((r) => r._id !== id);
     console.log(this.friends);
-    return axios.patch(`http://localhost:3000/users/${this.user._id}/people`, {
+    return axios.patch(`http://localhost:3000/users/${this.user!._id}/people`, {
       friendId: id,
     });
   }
@@ -45,6 +46,6 @@ export class MatchesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getMatches(this.user._id);
+    this.getMatches(this.user!._id);
   }
 }

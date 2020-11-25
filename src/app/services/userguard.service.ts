@@ -1,17 +1,18 @@
 import { Injectable } from '@angular/core';
-import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router, CanActivate } from '@angular/router';
+import axios from 'axios';
 @Injectable({
   providedIn: 'root'
 })
 export class UserguardService {
 
-  constructor(public jwtHelper: JwtHelperService, public router: Router) {}
+  dburlAuth = 'http://localhost:3000/';
+
+  constructor(public router: Router) {}
 
 
-  public isAuthenticated(): boolean {
-    const token = localStorage.getItem('token') || undefined;
-    return !this.jwtHelper.isTokenExpired(token);
+  public isAuthenticated(): Promise<boolean> {
+    return axios.get(this.dburlAuth + "auth/isAuth" ).then(res => res.data.status)
   }
 
   public canActivate(): boolean {

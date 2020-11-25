@@ -6,7 +6,7 @@ import { User } from '@int/user';
   providedIn: 'root',
 })
 export class GetuserService {
-  dburl = 'http://localhost:3000/users/';
+  dburl = 'http://localhost:3000/users';
 
   constructor() {}
 

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { GetuserService } from '@app/services/getuser.service';
 import { User } from '@int/user';
 import { AuthService } from '@app/services/auth.service';
+import axios from 'axios';
 
 @Component({
   selector: 'app-home',
@@ -10,17 +11,23 @@ import { AuthService } from '@app/services/auth.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
+  user?: User;
+  dburlAuth = 'http://localhost:3000/';
   constructor(
     private authService: AuthService,
+    private getuserService: GetuserService,
     private router: Router
   ) {
-    this.user = JSON.parse(this.authService.setCurrentSession() || '{}');
+    
   }
-  user: User;
   public logOut(): void {
-    localStorage.clear();
-    this.router.navigate(['/login']);
+    axios.get(this.dburlAuth + "auth/logout").then(msg => msg.data)
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.router.navigate(['/login']);
+    // this.authService.setCurrentSession().then(usuario => {
+    //   this.user = usuario
+    // });
+  }
 }

@@ -7,7 +7,7 @@ import { UsersLogIn } from '@int/users-log-in';
   providedIn: 'root',
 })
 export class SignupService {
-  dburl = 'http://localhost:3000/register';
+  dburl = 'http://localhost:3000/auth/register';
 
   constructor() {}
 
