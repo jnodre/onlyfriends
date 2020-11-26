@@ -8,24 +8,21 @@
     <mat-form-field class="hobbiesForm">
       <mat-label>Introduce tu nuevo nombre</mat-label>
 
-      <input matInput name="name" [formControl]="userProfile.name"  />
+      <input matInput name="name" [formControl]="userProfile.name" />
     </mat-form-field>
     <mat-icon *ngIf="userProfile.nameChange" class="card-icon check"
       >check_circle
     </mat-icon>
 
-      <mat-form-field class="hobbiesForm" appearance="fill">
-        <mat-label>Selecciona tu género</mat-label>
-        <mat-select [(value)]="genderValue">
-          <mat-option value="Masculino">Masculino
-          </mat-option>
-          <mat-option value="Femenino">Femenino
-          </mat-option>
-          <mat-option value="Otros">Otros
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-icon *ngIf="userProfile.genderChange" class="card-icon check"
+    <mat-form-field class="hobbiesForm" appearance="fill">
+      <mat-label>Selecciona tu género</mat-label>
+      <mat-select [(value)]="genderValue">
+        <mat-option value="Masculino">Masculino </mat-option>
+        <mat-option value="Femenino">Femenino </mat-option>
+        <mat-option value="Otros">Otros </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-icon *ngIf="userProfile.genderChange" class="card-icon check"
       >check_circle
     </mat-icon>
     <button
@@ -77,8 +74,8 @@
       </mat-autocomplete>
     </mat-form-field>
     <mat-icon *ngIf="userProfile.hobbyChange" class="card-icon check"
-    >check_circle
-  </mat-icon>
+      >check_circle
+    </mat-icon>
   </mat-card>
   <!--EMAIL Y PASSWORD-->
   <mat-card class="card">
@@ -93,8 +90,8 @@
       <input matInput name="email" [formControl]="userProfile.email" />
     </mat-form-field>
     <mat-icon *ngIf="userProfile.emailChange" class="card-icon check"
-    >check_circle
-  </mat-icon>
+      >check_circle
+    </mat-icon>
     <mat-form-field class="hobbiesForm">
       <mat-label>Introduce tu nueva contraseña</mat-label>
 
@@ -102,14 +99,17 @@
     </mat-form-field>
 
     <mat-icon *ngIf="userProfile.passwordChange" class="card-icon check"
-    >check_circle
-  </mat-icon>
-  <button
-  mat-raised-button
-  color="primary"
-  (click)="changeAccess(userProfile.email.value, userProfile.password.value)"
->
-  Guardar Cambios
-</button>
+      >check_circle
+    </mat-icon>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="
+        changeAccess(userProfile.email.value, userProfile.password.value)
+      "
+    >
+      Guardar Cambios</button
+    ><br />
+    <p class="logout" (click)="logout()">Cerrar sesión</p>
   </mat-card>
 </form>

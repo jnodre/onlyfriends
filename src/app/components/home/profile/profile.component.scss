@@ -1,27 +1,31 @@
-.main-container{
-    padding: 0px 15px;
-    width: 100%;
+.main-container {
+  padding: 0px 15px;
+  width: 100%;
 }
-.card{
-    margin-top:2em;
+.card {
+  margin-top: 2em;
 }
-.section-title{
-    display: flex;
-    justify-content: space-between;
+.section-title {
+  display: flex;
+  justify-content: space-between;
 }
-.card-info{
-    color: rgba(0,0,0,.54);
+.card-info {
+  color: rgba(0, 0, 0, 0.54);
 }
-.card-icon{
-    color: rgba(0,0,0,.54);
-
-}
-
-.hobbiesForm{
-    width: 80%;
+.card-icon {
+  color: rgba(0, 0, 0, 0.54);
 }
 
-.check{
-    color: green;
+.hobbiesForm {
+  width: 80%;
 }
 
+.check {
+  color: green;
+}
+
+.logout {
+  margin-top: 15px;
+  text-decoration: underline;
+  cursor: pointer;
+}

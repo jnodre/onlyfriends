@@ -1,0 +1,60 @@
+.container {
+  display: flex;
+  place-items: center;
+  place-content: center;
+  height: 100%;
+}
+
+.match {
+  width: 100%;
+  padding: 0px;
+  position: relative;
+}
+
+.match-pic {
+  width: 90vw;
+  position: relative;
+  color: white;
+  img {
+    width: 100%;
+    border-radius: 5px;
+  }
+}
+.text-image {
+  position: absolute;
+  color: white;
+  left: 10px;
+  bottom: 40px;
+  text-shadow: 0px 0px 5px black;
+}
+.name {
+  font-size: 1.5em;
+}
+
+.hobbies {
+  list-style: none;
+  background: #e0e0e0;
+  padding: 2px 12px;
+  border-radius: 32px;
+  font-size: 13px;
+}
+
+.match-data {
+  color: black;
+  text-shadow: none;
+  display: flex;
+  place-items: center;
+  place-content: space-between;
+  li {
+    list-style: none;
+  }
+  ul {
+    padding-left: 0px;
+    display: flex;
+    flex-direction: row;
+    li {
+      list-style: none;
+      margin-right: 5px;
+    }
+  }
+}

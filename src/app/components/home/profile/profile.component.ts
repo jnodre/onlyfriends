@@ -11,6 +11,7 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -80,7 +81,8 @@ export class ProfileComponent implements OnInit {
   constructor(
     private patchuserService: PatchuserService,
     private formBuilder: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {
     this.filteredHobbies = this.hobbyCtrl.valueChanges.pipe(
       startWith(null),
@@ -221,6 +223,10 @@ export class ProfileComponent implements OnInit {
     return this.allHobbies.filter(
       (hobby) => hobby.toLowerCase().indexOf(filterValue) === 0
     );
+  }
+  public logout(): void {
+    window.localStorage.clear();
+    this.router.navigateByUrl('/login');
   }
   ngOnInit(): void {
     this.hobbies = this.user.hobbies;
