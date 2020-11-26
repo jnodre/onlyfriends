@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { User } from '@int/user';
 import { AuthService } from '@app/services/auth.service';
 import { GetuserService } from '@app/services/getuser.service';
+import { Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-friend-list',
@@ -17,12 +18,21 @@ export class FriendListComponent implements OnInit {
   ) {
     this.user = JSON.parse(this.authService.setCurrentSession() || '{}');
   }
-  friends: string[] = [];
+  friends: any[] = [];
   user: User;
+  @Output() newItemEvent = new EventEmitter<string>();
+
+  public takeFriends(id: string): void {
+    this.getuserService.getUser(id).then((res) => {
+      localStorage.setItem('friendProfile', JSON.stringify(res));
+      this.router.navigateByUrl('/friend-profile');
+    });
+  }
+
   ngOnInit(): void {
     this.user.friends.forEach((r) => {
       this.getuserService.getUser(r).then((res) => {
-        this.friends.push(res.name);
+        this.friends.push(res);
       });
     });
   }

@@ -23,10 +23,11 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatchesComponent } from './components/home/matches/matches.component';
-import { ChatComponent } from './components/home/chat/chat.component';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { FriendListComponent } from './components/home/friend-list/friend-list.component';
 import { MatListModule } from '@angular/material/list';
+import { FriendProfileComponent } from './components/home/friend-profile/friend-profile.component';
+
 
 @NgModule({
   declarations: [
@@ -36,8 +37,9 @@ import { MatListModule } from '@angular/material/list';
     ProfileComponent,
     HomeComponent,
     MatchesComponent,
-    ChatComponent,
     FriendListComponent,
+    FriendProfileComponent
+
   ],
   imports: [
     FormsModule,

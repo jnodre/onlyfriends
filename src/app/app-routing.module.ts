@@ -5,7 +5,7 @@ import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { ProfileComponent } from './components/home/profile/profile.component';
 import { MatchesComponent } from './components/home/matches/matches.component';
-import { ChatComponent } from './components/home/chat/chat.component';
+import { FriendProfileComponent } from './components/home/friend-profile/friend-profile.component';
 import { FriendListComponent } from './components/home/friend-list/friend-list.component';
 import { AuthService as AuthGuard } from '@app/services/auth.service';
 import { UserguardService as UserGuard } from '@app/services/userguard.service';
@@ -24,12 +24,12 @@ const routes: Routes = [
         component: MatchesComponent,
       },
       {
-        path: 'chat',
-        component: ChatComponent,
-      },
-      {
         path: 'friends',
         component: FriendListComponent,
+      },
+      {
+        path: 'friend-profile',
+        component: FriendProfileComponent,
       },
     ],
   },

@@ -1,37 +1,33 @@
+<!-- <button mat-icon-button>
+    <mat-icon
+      (click)="logOut()"
+      #tooltip="matTooltip"
+      matTooltip="Cerrar sesión"
+      >logout</mat-icon
+    >
+  </button> -->
 <div class="main-container">
-  <div class="main-bar">
-    <p>Mi Perfil</p>
-    <div class="profile-name">
-      <p>{{ user.email }}.</p>
-
-      <button mat-icon-button>
-        <mat-icon
-          (click)="logOut()"
-          #tooltip="matTooltip"
-          matTooltip="Cerrar sesión"
-          >logout</mat-icon
-        >
-      </button>
-
-    </div>
-  </div>
   <div class="grid">
-    <div>
-      <app-profile></app-profile>
-    </div>
-     <router-outlet ></router-outlet>
+    <router-outlet></router-outlet>
 
-    <div></div>
   </div>
+  <nav class="bottom-menu">
+    <ul>
+      <li>
+        <a routerLink="matches">
+          <mat-icon class="card-icon">shuffle</mat-icon></a
+        >
+      </li>
+      <li>
+        <a routerLink="friends">
+          <mat-icon class="card-icon">group</mat-icon></a
+        >
+      </li>
+      <li>
+        <a routerLink="profile">
+          <mat-icon class="card-icon">settings</mat-icon></a
+        >
+      </li>
+    </ul>
+  </nav>
 </div>
-<nav class="bottom-menu">
-  <ul>
-    <li>   <a routerLink="matches"> <mat-icon class="card-icon">home</mat-icon></a>
-    </li>
-    <li>    <a routerLink="profile">   <mat-icon class="card-icon">person</mat-icon></a>
-    </li>
-    <li>    <a routerLink="friends">   <mat-icon class="card-icon">person</mat-icon></a>
-    </li>
-
-  </ul>
-</nav>

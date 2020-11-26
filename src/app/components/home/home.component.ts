@@ -10,10 +10,7 @@ import { AuthService } from '@app/services/auth.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  constructor(
-    private authService: AuthService,
-    private router: Router
-  ) {
+  constructor(private authService: AuthService, private router: Router) {
     this.user = JSON.parse(this.authService.setCurrentSession() || '{}');
   }
   user: User;
