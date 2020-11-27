@@ -1,3 +1,15 @@
+<div class="no-matches" *ngIf="friends.length==0">
+  <div class="no-people" style="text-align:center;margin-top:70px;">
+    <div class="separator"></div>
+    <div class="container">
+        <button class="pulse-button"></button>
+    </div>
+  </div>
+
+
+  <div class="separator"></div>
+  <h3 class="no-people-text">Aún no tienes friendmatches registrados</h3>
+</div>
 <div class="container">
   <mat-selection-list [multiple]="false">
     <mat-list-option *ngFor="let friend of friends" [value]="friend">
