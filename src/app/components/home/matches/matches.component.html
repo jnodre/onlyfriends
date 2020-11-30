@@ -11,13 +11,11 @@
   <h3 class="no-people-text">Añade más hobbies o actualizalos para encontrar más personas que tengan hobbies en común contigo.</h3>
 </div>
 
-
+<div>
 <ul class="match" *ngFor="let friend of friends">
   <div class="match-pic">
-    <img
-      src="https://photos1.blogger.com/blogger/6582/403/1600/scarlettjohansson.jpg"
-      alt=""
-    />
+    <img [src]="url"  onerror="this.onerror=null;this.src='assets/img/error.png';"  width="300px" height="300px" (onload)="obtainImage(friend._id)"/>
+
     <div class="text-image">
       <p class="name">{{ friend.email }}</p>
 
@@ -45,3 +43,4 @@
 
   </div>
 </ul>
+</div>

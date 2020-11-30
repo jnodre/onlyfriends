@@ -12,7 +12,10 @@ import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Router } from '@angular/router';
+import { AngularFireStorage } from '@angular/fire/storage';
 
+
+import { finalize } from 'rxjs/operators';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -78,12 +81,18 @@ export class ProfileComponent implements OnInit {
   @ViewChild('hobbyInput') hobbyInput!: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete!: MatAutocomplete;
 
+  downloadUrl!: Observable<string>;
+  url:any;
+
   constructor(
     private patchuserService: PatchuserService,
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private storage : AngularFireStorage
   ) {
+
+    this.url="assets/img/error.png";
     this.filteredHobbies = this.hobbyCtrl.valueChanges.pipe(
       startWith(null),
       map((hobby: string | null) =>
@@ -91,6 +100,48 @@ export class ProfileComponent implements OnInit {
       )
     );
     this.user = JSON.parse(this.authService.setCurrentSession() || '{}');
+  }
+    file:any;
+
+    upload($event: any){
+      this.file = $event.target.files[0];
+    }
+
+    changeImage(){
+      const filename = "fotos/"+this.user._id;
+      console.log("ID USER: ",this.user._id);
+      const fileRef= this.storage.ref(filename);
+      var task = this.storage.upload(filename, this.file);
+      task
+      .snapshotChanges()
+      .pipe(
+        finalize(() => {
+          this.downloadUrl = fileRef.getDownloadURL();
+          this.downloadUrl.subscribe(u => {
+            if (u) {
+              this.url = u;
+            }
+            console.log("LA OTRA URL: ",this.url);
+          });
+        })
+      )
+      .subscribe((u: any) => {
+        console.log(u);
+
+      });
+   }
+
+
+  public loadImage(){
+    const filename = "fotos/"+this.user._id;
+    const fileRef= this.storage.ref(filename);
+    this.downloadUrl = fileRef.getDownloadURL();
+    this.downloadUrl.subscribe(u => {
+      if (u) {
+        this.url = u;
+      }
+      console.log("LA OTRA URL: ",this.url);
+    });
   }
   public changeHobbies(): void {
     if (this.user) {
@@ -228,7 +279,10 @@ export class ProfileComponent implements OnInit {
     window.localStorage.clear();
     this.router.navigateByUrl('/login');
   }
+
   ngOnInit(): void {
     this.hobbies = this.user.hobbies;
+    //console.log("INICIANDO... ", this.url);
+    this.loadImage();
   }
 }

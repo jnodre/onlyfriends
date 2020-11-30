@@ -28,6 +28,8 @@ import { FriendListComponent } from './components/home/friend-list/friend-list.c
 import { MatListModule } from '@angular/material/list';
 import { FriendProfileComponent } from './components/home/friend-profile/friend-profile.component';
 
+import { AngularFireStorageModule, BUCKET} from '@angular/fire/storage';
+import {AngularFireModule}  from '@angular/fire'
 
 @NgModule({
   declarations: [
@@ -38,7 +40,7 @@ import { FriendProfileComponent } from './components/home/friend-profile/friend-
     HomeComponent,
     MatchesComponent,
     FriendListComponent,
-    FriendProfileComponent
+    FriendProfileComponent,
 
   ],
   imports: [
@@ -61,10 +63,23 @@ import { FriendProfileComponent } from './components/home/friend-profile/friend-
     MatDialogModule,
     IvyCarouselModule,
     MatListModule,
+    AngularFireModule.initializeApp({
+      apiKey: "AIzaSyBXwDQNqy9LLXI4VxZQPtXAaws8ODZt6z0",
+      authDomain: "onlyfriends-79989.firebaseapp.com",
+      databaseURL: "https://onlyfriends-79989.firebaseio.com",
+      projectId: "onlyfriends-79989",
+      storageBucket: "onlyfriends-79989.appspot.com",
+      messagingSenderId: "279470064809",
+      appId: "1:279470064809:web:bd0da5666a98f2177055b8",
+      measurementId: "G-6RVSYYDHPV"
+    }),
+    AngularFireStorageModule,
+
   ],
   providers: [
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
     JwtHelperService,
+    {provide: BUCKET, useValue: 'gs://onlyfriends-79989.appspot.com'}
   ],
   bootstrap: [AppComponent],
 })

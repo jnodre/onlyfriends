@@ -1,6 +1,22 @@
 <form class="form" [formGroup]="profileForm">
   <!--DATOS PERSONALES-->
   <mat-card class="card">
+    <p class="card-title">Foto de perfil</p>
+    <img id="profile-image-selector" [src]="url"  onerror="this.onerror=null"  width="300px" height="300px"/>
+    <div class="separator"></div>
+    <div class="section-title">
+        <input type="file" (change)="upload($event)" accept="*.png, *.jpg">
+    </div>
+    <button
+        mat-raised-button
+        color="primary"
+        (click)="changeImage()"
+      >
+        Guardar Cambios
+      </button>
+  </mat-card>
+
+  <mat-card class="card">
     <div class="section-title">
       <p class="card-title">Datos personales</p>
       <mat-icon class="card-icon">person</mat-icon>
