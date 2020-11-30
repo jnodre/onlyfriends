@@ -29,27 +29,31 @@ export class MatchesComponent implements OnInit {
   downloadUrl!: Observable<string>;
   url!:string;
 
+
   public getMatches(id: string): void {
     this.friendsService.getMatches(id).then((res: any) => {
-      this.item = Object.entries(res)[0];
+      this.item = res;
+      console.log(this.item);
       this.item.forEach((r: any) => {
         this.getMatchesData(r._id);
         this.obtainImage(r._id);
       });
     });
   }
+
   public getMatchesData(id: string): void {
     this.getUserService.getUser(id).then((r) => {
       this.friends.push(r);
     });
   }
+
   public match(id: string): any {
     this.friends = this.friends.filter((r) => r._id !== id);
-    console.log(this.friends);
     return axios.patch(`http://localhost:3000/users/${this.user._id}/people`, {
       friendId: id,
     });
   }
+
   public no_match(id: string): any {
     this.friends = this.friends.filter((r) => r._id !== id);
   }
