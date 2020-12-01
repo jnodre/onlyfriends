@@ -11,12 +11,14 @@
   <h3 class="no-people-text">Aún no tienes friendmatches registrados</h3>
 </div>
 <div class="container">
-  <mat-selection-list [multiple]="false">
+  <mat-selection-list [multiple]="true">
     <mat-list-option *ngFor="let friend of friends" [value]="friend">
       <span class="friend" (click)="takeFriends(friend._id)">
         <mat-icon class="card-icon">mark_chat_unread </mat-icon>
         {{ friend.name }}
+
       </span>
+      <button (click)="openChat(friend._id)">Hablar</button>
     </mat-list-option>
   </mat-selection-list>
 </div>
