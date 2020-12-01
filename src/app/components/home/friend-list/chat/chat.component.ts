@@ -25,10 +25,11 @@ export class ChatComponent implements OnInit {
       this.friendId=this.router.snapshot.params["friendId"];
       this.user = JSON.parse(this.authService.setCurrentSession() || '{}');
 
+    this.obtainUserImage(this.user._id);
+    this.obtainFriendImage(this.friendId);
+
   }
   ngOnInit(): void {
-    this.obtainImage(this.user._id, this.myUrl);
-    this.obtainImage(this.friendId, this.friendUrl);
     this.getUserService.getUser(this.friendId).then((r) => {
       this.friendName=r.name;
     });
@@ -36,15 +37,26 @@ export class ChatComponent implements OnInit {
   }
 
 
-  obtainImage(id: string, url:string): void{
+  obtainUserImage(id: string): void{
     const filename = "fotos/"+id;
     const fileRef= this.storage.ref(filename);
     this.downloadUrl = fileRef.getDownloadURL();
     this.downloadUrl.subscribe(u => {
       if (u) {
-        url = u;
+        this.myUrl = u;
       }
-      console.log("LA OTRA URL: ",url);
+      console.log("LA OTRA URL: ",this.myUrl);
+    });
+  }
+  obtainFriendImage(id: string): void{
+    const filename = "fotos/"+id;
+    const fileRef= this.storage.ref(filename);
+    this.downloadUrl = fileRef.getDownloadURL();
+    this.downloadUrl.subscribe(u => {
+      if (u) {
+        this.friendUrl= u;
+      }
+      console.log("LA OTRA URL: ",this.friendUrl);
     });
   }
   back(){
