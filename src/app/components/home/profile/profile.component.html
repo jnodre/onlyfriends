@@ -1,19 +1,28 @@
 <form class="form" [formGroup]="profileForm">
   <!--DATOS PERSONALES-->
   <mat-card class="card">
-    <p class="card-title">Foto de perfil</p>
-    <img id="profile-image-selector" [src]="url"  onerror="this.onerror=null"  width="300px" height="300px"/>
-    <div class="separator"></div>
     <div class="section-title">
-        <input type="file" (change)="upload($event)" accept="*.png, *.jpg">
+      <p class="card-title">Foto de perfil</p>
+      <mat-icon class="card-icon">photo</mat-icon>
     </div>
-    <button
-        mat-raised-button
-        color="primary"
-        (click)="changeImage()"
-      >
-        Guardar Cambios
-      </button>
+    <img id="profile-image-selector" [src]="url" onerror="this.onerror=null" />
+    <div class="separator"></div>
+    <div class="flex">
+      <div class="section-title">
+        <input
+          class="file"
+          type="file"
+          (change)="upload($event)"
+          accept="*.png, *.jpg"
+        />
+      </div>
+      <mat-icon *ngIf="imageChange" class="card-icon check"
+        >check_circle
+      </mat-icon>
+    </div>
+    <button mat-raised-button color="primary" (click)="changeImage()">
+      Guardar Cambios
+    </button>
   </mat-card>
 
   <mat-card class="card">

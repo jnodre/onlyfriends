@@ -14,7 +14,6 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Router } from '@angular/router';
 import { AngularFireStorage } from '@angular/fire/storage';
 
-
 import { finalize } from 'rxjs/operators';
 @Component({
   selector: 'app-profile',
@@ -61,7 +60,7 @@ export class ProfileComponent implements OnInit {
     'StartUps',
   ];
   user: User;
-
+  imageChange = false;
   profileForm = this.formBuilder.group({
     email: [''],
     name: [''],
@@ -82,17 +81,16 @@ export class ProfileComponent implements OnInit {
   @ViewChild('auto') matAutocomplete!: MatAutocomplete;
 
   downloadUrl!: Observable<string>;
-  url:any;
+  url: any;
 
   constructor(
     private patchuserService: PatchuserService,
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private storage : AngularFireStorage
+    private storage: AngularFireStorage
   ) {
-
-    this.url="assets/img/error.png";
+    this.url = 'assets/img/error.png';
     this.filteredHobbies = this.hobbyCtrl.valueChanges.pipe(
       startWith(null),
       map((hobby: string | null) =>
@@ -101,55 +99,53 @@ export class ProfileComponent implements OnInit {
     );
     this.user = JSON.parse(this.authService.setCurrentSession() || '{}');
   }
-    file:any;
+  file: any;
 
-    upload($event: any){
-      this.file = $event.target.files[0];
-    }
+  upload($event: any) {
+    this.file = $event.target.files[0];
+  }
 
-    changeImage(){
-      const filename = "fotos/"+this.user._id;
-      console.log("ID USER: ",this.user._id);
-      const fileRef= this.storage.ref(filename);
-      var task = this.storage.upload(filename, this.file);
-      task
+  changeImage() {
+    const filename = 'fotos/' + this.user._id;
+    console.log('ID USER: ', this.user._id);
+    const fileRef = this.storage.ref(filename);
+    const task = this.storage.upload(filename, this.file);
+    task
       .snapshotChanges()
       .pipe(
         finalize(() => {
           this.downloadUrl = fileRef.getDownloadURL();
-          this.downloadUrl.subscribe(u => {
+          this.downloadUrl.subscribe((u) => {
             if (u) {
               this.url = u;
+              this.imageChange = true;
+              setTimeout(() => {
+                this.imageChange = false;
+              }, 1500);
             }
-            console.log("LA OTRA URL: ",this.url);
+            console.log('LA OTRA URL: ', this.url);
           });
         })
       )
       .subscribe((u: any) => {
         console.log(u);
-
       });
-   }
+  }
 
-
-  public loadImage(){
-    const filename = "fotos/"+this.user._id;
-    const fileRef= this.storage.ref(filename);
+  public loadImage(): void {
+    const filename = 'fotos/' + this.user._id;
+    const fileRef = this.storage.ref(filename);
     this.downloadUrl = fileRef.getDownloadURL();
-    this.downloadUrl.subscribe(u => {
+    this.downloadUrl.subscribe((u) => {
       if (u) {
         this.url = u;
       }
-      console.log("LA OTRA URL: ",this.url);
+      console.log('LA OTRA URL: ', this.url);
     });
   }
   public changeHobbies(): void {
     if (this.user) {
       this.patchuserService.editHobbies(this.user._id, this.hobbies);
-      this.userProfile.hobbyChange = true;
-      setTimeout(() => {
-        this.userProfile.hobbyChange = false;
-      }, 1500);
     } else {
       console.log(this.user);
     }
@@ -282,7 +278,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.hobbies = this.user.hobbies;
-    //console.log("INICIANDO... ", this.url);
+    // console.log("INICIANDO... ", this.url);
     this.loadImage();
   }
 }

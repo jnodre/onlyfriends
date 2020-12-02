@@ -1,6 +1,6 @@
-.main-container {
+.form {
   padding: 0px 15px;
-  width: 100%;
+  width: 95%;
 }
 .card {
   margin-top: 2em;
@@ -30,7 +30,22 @@
   cursor: pointer;
 }
 
-.img-container
-{
-  text-align:center;
+.img-container {
+  text-align: center;
+}
+
+#profile-image-selector {
+  border: 1px solid rgb(185, 185, 185);
+  max-width: 50%;
+  height: auto;
+}
+
+.file {
+  margin: 15px 0px;
+}
+
+.flex {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
