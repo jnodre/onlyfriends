@@ -16,6 +16,7 @@
     "@angular/common": "~10.2.0",
     "@angular/compiler": "~10.2.0",
     "@angular/core": "~10.2.0",
+    "@angular/fire": "^6.1.3",
     "@angular/flex-layout": "^11.0.0-beta.33",
     "@angular/forms": "~10.2.0",
     "@angular/material": "^10.2.7",
@@ -26,6 +27,7 @@
     "angular-responsive-carousel": "^1.5.11",
     "axios": "^0.21.0",
     "cors": "^2.8.5",
+    "firebase": "^8.1.1",
     "rxjs": "^6.6.3",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
@@ -54,5 +56,17 @@
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "typescript": "~4.0.2"
-  }
+  },
+  "description": "This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.2.0.",
+  "main": "karma.conf.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jnodre/onlyfriends.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jnodre/onlyfriends/issues"
+  },
+  "homepage": "https://github.com/jnodre/onlyfriends#readme"
 }

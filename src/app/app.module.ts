@@ -32,6 +32,8 @@ import { ChatComponent } from './components/home/friend-list/chat/chat.component
 import { AngularFireStorageModule, BUCKET} from '@angular/fire/storage';
 import {AngularFireModule}  from '@angular/fire';
 
+import { ChatServiceService } from './services/chat-service.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -82,7 +84,8 @@ import {AngularFireModule}  from '@angular/fire';
   providers: [
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
     JwtHelperService,
-    {provide: BUCKET, useValue: 'gs://onlyfriends-79989.appspot.com'}
+    {provide: BUCKET, useValue: 'gs://onlyfriends-79989.appspot.com'},
+    ChatServiceService
   ],
   bootstrap: [AppComponent],
 })
