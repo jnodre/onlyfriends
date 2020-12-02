@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="match-pic">
+      <img
+        src="https://photos1.blogger.com/blogger/6582/403/1600/scarlettjohansson.jpg"
+        alt=""
+      />
+      <div class="text-image">
+        <p class="name">{{ user.name }}</p>
+  
+        <div class="match-data">
+          <div>
+            <ul>
+  
+              <li class="description">{{ user.description }}</li>
+              <div class="row">
+                <li *ngFor="let hobbie of user.hobbies">
+                  <span class="hobbies">{{ hobbie }}</span>
+                </li>
+              </div>
+              <li class="social">{{user.Instagram}}</li>
+              <li class="social">{{user.Facebook}}</li>
+              <li class="social">{{user.Whatssap}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

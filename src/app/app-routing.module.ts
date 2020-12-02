@@ -7,6 +7,7 @@ import { ProfileComponent } from './components/home/profile/profile.component';
 import { MatchesComponent } from './components/home/matches/matches.component';
 import { FriendProfileComponent } from './components/home/friend-profile/friend-profile.component';
 import { FriendListComponent } from './components/home/friend-list/friend-list.component';
+import { MeComponent } from './components/home/me/me.component';
 import { AuthService as AuthGuard } from '@app/services/auth.service';
 import { UserguardService as UserGuard } from '@app/services/userguard.service';
 const routes: Routes = [
@@ -30,6 +31,10 @@ const routes: Routes = [
       {
         path: 'friend-profile',
         component: FriendProfileComponent,
+      },
+      {
+        path: 'me',
+        component: MeComponent,
       },
     ],
   },

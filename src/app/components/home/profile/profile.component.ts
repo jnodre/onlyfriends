@@ -65,6 +65,9 @@ export class ProfileComponent implements OnInit {
     email: [''],
     name: [''],
     password: [''],
+    instagram: [''],
+    facebook: [''],
+    whatsapp: [''],
   });
 
   userProfile = {
@@ -75,7 +78,13 @@ export class ProfileComponent implements OnInit {
     genderChange: false,
     password: this.profileForm.controls.password,
     passwordChange: false,
+    instagramChange: false,
+    facebookChange: false,
+    whatsappChange: false,
     hobbyChange: false,
+    instagram: this.profileForm.controls.instagram,
+    facebook: this.profileForm.controls.facebook,
+    whatsapp: this.profileForm.controls.whatsapp,
   };
   @ViewChild('hobbyInput') hobbyInput!: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete!: MatAutocomplete;
@@ -101,11 +110,11 @@ export class ProfileComponent implements OnInit {
   }
   file: any;
 
-  upload($event: any) {
+  upload($event: any): void {
     this.file = $event.target.files[0];
   }
 
-  changeImage() {
+  changeImage(): void {
     const filename = 'fotos/' + this.user._id;
     console.log('ID USER: ', this.user._id);
     const fileRef = this.storage.ref(filename);
@@ -192,6 +201,51 @@ export class ProfileComponent implements OnInit {
       console.log(this.user);
     }
   }
+  public changeWhatsapp(): void {
+    if (this.user) {
+      this.patchuserService.editWhatsapp(
+        this.user._id,
+        this.userProfile.whatsapp.value
+      );
+      this.userProfile.whatsappChange = true;
+      setTimeout(() => {
+        this.userProfile.whatsappChange = false;
+      }, 1500);
+      this.profileForm.controls.whatsapp.setValue('');
+    } else {
+      console.log(this.user);
+    }
+  }
+  public changeFacebook(): void {
+    if (this.user) {
+      this.patchuserService.editFacebook(
+        this.user._id,
+        this.userProfile.facebook.value
+      );
+      this.userProfile.facebookChange = true;
+      setTimeout(() => {
+        this.userProfile.facebookChange = false;
+      }, 1500);
+      this.profileForm.controls.facebook.setValue('');
+    } else {
+      console.log(this.user);
+    }
+  }
+  public changeInstagram(): void {
+    if (this.user) {
+      this.patchuserService.editInstagram(
+        this.user._id,
+        this.userProfile.instagram.value
+      );
+      this.userProfile.instagramChange = true;
+      setTimeout(() => {
+        this.userProfile.instagramChange = false;
+      }, 1500);
+      this.profileForm.controls.instagram.setValue('');
+    } else {
+      console.log(this.user);
+    }
+  }
   public changePassword(): void {
     if (this.user) {
       this.patchuserService.editPassword(
@@ -227,6 +281,27 @@ export class ProfileComponent implements OnInit {
     }
     if (password.length > 1) {
       this.changePassword();
+    } else {
+      console.log('error');
+    }
+  }
+  public changeSocial(
+    whatsapp: string,
+    facebook: string,
+    instagram: string
+  ): void {
+    if (whatsapp.length > 1) {
+      this.changeWhatsapp();
+    } else {
+      console.log(this.user);
+    }
+    if (facebook.length > 1) {
+      this.changeFacebook();
+    } else {
+      console.log('error');
+    }
+    if (instagram.length > 1) {
+      this.changeInstagram();
     } else {
       console.log('error');
     }

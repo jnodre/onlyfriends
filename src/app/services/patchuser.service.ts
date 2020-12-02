@@ -34,4 +34,19 @@ export class PatchuserService {
       password: data,
     });
   }
+  public editWhatsapp(id: string, data: string): Promise<User> {
+    return axios.patch(this.dburl + id + '/whatsapp', {
+      Whatssap: data,
+    });
+  }
+  public editFacebook(id: string, data: string): Promise<User> {
+    return axios.patch(this.dburl + id + '/facebook', {
+      Facebook: data,
+    });
+  }
+  public editInstagram(id: string, data: string): Promise<User> {
+    return axios.patch(this.dburl + id + '/instagram', {
+      Instagram: data,
+    });
+  }
 }

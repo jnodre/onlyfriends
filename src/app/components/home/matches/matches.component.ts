@@ -20,15 +20,13 @@ export class MatchesComponent implements OnInit {
     private getUserService: GetuserService,
     private storage: AngularFireStorage
   ) {
-
     this.user = JSON.parse(this.authService.setCurrentSession() || '{}');
   }
   item: any;
   array: string[] = [];
   friends: any[] = [];
   downloadUrl!: Observable<string>;
-  url!:string;
-
+  url!: string;
 
   public getMatches(id: string): void {
     this.friendsService.getMatches(id).then((res: any) => {
@@ -57,18 +55,17 @@ export class MatchesComponent implements OnInit {
   public no_match(id: string): any {
     this.friends = this.friends.filter((r) => r._id !== id);
   }
-  obtainImage(id: string): void{
-    const filename = "fotos/"+id;
-    const fileRef= this.storage.ref(filename);
+  obtainImage(id: string): void {
+    const filename = 'fotos/' + id;
+    const fileRef = this.storage.ref(filename);
     this.downloadUrl = fileRef.getDownloadURL();
-    this.downloadUrl.subscribe(u => {
+    this.downloadUrl.subscribe((u) => {
       if (u) {
         this.url = u;
       }
-      console.log("LA OTRA URL: ",this.url);
+      console.log('LA OTRA URL: ', this.url);
     });
-
- }
+  }
 
   ngOnInit(): void {
     this.getMatches(this.user._id);

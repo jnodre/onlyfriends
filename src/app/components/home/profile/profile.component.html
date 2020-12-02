@@ -102,6 +102,50 @@
       >check_circle
     </mat-icon>
   </mat-card>
+  <!--REDES SOCIALES-->
+  <mat-card class="card">
+    <div class="section-title">
+      <p class="card-title">Redes sociales</p>
+      <mat-icon class="card-icon">group</mat-icon>
+    </div>
+    <mat-form-field class="hobbiesForm">
+      <mat-label>Introduce tu Whatsapp</mat-label>
+
+      <input [formControl]="userProfile.whatsapp" matInput name="whatsapp" />
+    </mat-form-field>
+    <mat-icon *ngIf="userProfile.whatsappChange" class="card-icon check"
+      >check_circle
+    </mat-icon>
+    <mat-form-field class="hobbiesForm">
+      <mat-label>facebook.com/</mat-label>
+
+      <input [formControl]="userProfile.instagram"  matInput name="instagram" />
+    </mat-form-field>
+    <mat-icon *ngIf="userProfile.instagramChange" class="card-icon check"
+      >check_circle
+    </mat-icon>
+    <mat-form-field class="hobbiesForm">
+      <mat-label>instagram.com/</mat-label>
+
+      <input [formControl]="userProfile.facebook"  matInput name="facebook"/>
+    </mat-form-field>
+    <mat-icon *ngIf="userProfile.facebookChange" class="card-icon check"
+      >check_circle
+    </mat-icon>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="
+        changeSocial(
+          userProfile.whatsapp.value,
+          userProfile.facebook.value,
+          userProfile.instagram.value
+        )
+      "
+    >
+      Guardar Cambios
+    </button>
+  </mat-card>
   <!--EMAIL Y PASSWORD-->
   <mat-card class="card">
     <div class="section-title">
@@ -135,6 +179,5 @@
     >
       Guardar Cambios</button
     ><br />
-    <p class="logout" (click)="logout()">Cerrar sesión</p>
   </mat-card>
 </form>

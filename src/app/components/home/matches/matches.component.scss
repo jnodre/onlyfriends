@@ -43,16 +43,18 @@
   display: flex;
   place-items: center;
   place-content: space-between;
-  li {
-    list-style: none;
-  }
   ul {
     padding-left: 0px;
-    display: flex;
-    flex-direction: row;
     li {
       list-style: none;
-      margin-right: 5px;
+      ul {
+        display: flex;
+        flex-direction: row;
+        li {
+          list-style: none;
+          margin-right: 5px;
+        }
+      }
     }
   }
 }

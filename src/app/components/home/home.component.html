@@ -6,10 +6,24 @@
       >logout</mat-icon
     >
   </button> -->
+<div class="topbar">
+
+<img [matMenuTriggerFor]="menu" [src]="url" alt="" />
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item routerLink="me">
+    <span>{{user.name}}</span>
+  </button>
+  <button mat-menu-item (click)="logout()">
+    <mat-icon>logout</mat-icon>
+    <span>Logout</span>
+  </button>
+</mat-menu>
+</div>
+
 <div class="main-container">
   <div class="grid">
     <router-outlet></router-outlet>
-
   </div>
   <nav class="bottom-menu">
     <ul>

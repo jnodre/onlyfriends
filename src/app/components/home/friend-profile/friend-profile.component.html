@@ -10,9 +10,16 @@
       <div class="match-data">
         <div>
           <ul>
-            <li *ngFor="let hobbie of friend.hobbies">
-              <span class="hobbies">{{ hobbie }}</span>
-            </li>
+
+            <li class="description">{{ friend.description }}</li>
+            <div class="row">
+              <li *ngFor="let hobbie of friend.hobbies">
+                <span class="hobbies">{{ hobbie }}</span>
+              </li>
+            </div>
+            <li class="social">{{friend.Instagram}}</li>
+            <li class="social">{{friend.Facebook}}</li>
+            <li class="social">{{friend.Whatssap}}</li>
           </ul>
         </div>
       </div>
