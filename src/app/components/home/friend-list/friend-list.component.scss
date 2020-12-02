@@ -1,11 +1,11 @@
-.container {
+.container2 {
   width: 90vw;
 }
 
 .friend {
   display: flex;
+  place-content: flex-start;
   flex-direction: row;
-  place-items: center;
   :first-child {
     margin-right: 5px;
   }
@@ -16,7 +16,6 @@
 .container {
   width: 200px;
   height: 100%;
-  margin: 0 auto 0;
 }
 .no-people p {
   color: #36658e;

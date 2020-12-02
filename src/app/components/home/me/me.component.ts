@@ -22,6 +22,9 @@ import { finalize } from 'rxjs/operators';
 })
 export class MeComponent implements OnInit {
   user: any;
+  url;
+  downloadUrl!: Observable<string>;
+
   constructor(
     private patchuserService: PatchuserService,
     private formBuilder: FormBuilder,
@@ -30,10 +33,21 @@ export class MeComponent implements OnInit {
     private storage: AngularFireStorage
   ) {
     this.user = JSON.parse(this.authService.setCurrentSession() || '{}');
+    this.url = 'assets/img/error.png';
   }
-
+  public loadImage(): void {
+    const filename = 'fotos/' + this.user._id;
+    const fileRef = this.storage.ref(filename);
+    this.downloadUrl = fileRef.getDownloadURL();
+    this.downloadUrl.subscribe((u) => {
+      if (u) {
+        this.url = u;
+      }
+      console.log('LA OTRA URL: ', this.url);
+    });
+  }
   ngOnInit(): void {
+    this.loadImage();
     console.log(this.user);
-    
   }
 }
