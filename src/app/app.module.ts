@@ -34,6 +34,8 @@ import {AngularFireModule}  from '@angular/fire';
 
 import { ChatServiceService } from './services/chat-service.service';
 
+import { CommonModule } from "@angular/common";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,6 +51,7 @@ import { ChatServiceService } from './services/chat-service.service';
   ],
   imports: [
     FormsModule,
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

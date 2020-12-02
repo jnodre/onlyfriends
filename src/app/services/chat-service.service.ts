@@ -5,7 +5,8 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ChatServiceService {
-
+  public emisor!:string;
+  public receptor!:string;
   public chat: any [] = [];
   public itemsCollection!: AngularFirestoreCollection<any>;
   constructor(private afs: AngularFirestore) { }
@@ -24,7 +25,10 @@ export class ChatServiceService {
 
       return this.chat;
     }));
+  }
 
+  getItemCollection(){
+    return this.itemsCollection;
   }
 
   saveMessage(texto: string, userId:string, friendId:string){
@@ -36,4 +40,13 @@ export class ChatServiceService {
       }
       return this.itemsCollection.add(mensaje);
   }
+
+  knowSender(){
+
+  }
+
+  knowReceiver(){
+
+  }
 }
+
