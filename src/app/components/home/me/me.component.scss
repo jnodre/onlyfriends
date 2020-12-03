@@ -19,6 +19,10 @@
     }
   }
   .text-image {
+    background-color: rgba(190, 190, 190, 0.897);
+    border-radius: 5px;
+    margin-right: 15px;
+    padding: 15px;
     position: absolute;
     color: white;
     left: 10px;
@@ -64,8 +68,17 @@
   .row {
     display: flex;
     flex-direction: row;
+    margin-bottom: 20px;
   }
   .social {
-    color: white !important;
+    display: flex;
+    flex-direction: row;
+    place-items: center;
+  }
+  
+  .icon {
+    width: 1em !important;
+    height: 1em;
+    padding-right: 5px;
   }
   
