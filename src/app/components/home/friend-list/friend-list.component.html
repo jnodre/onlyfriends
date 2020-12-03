@@ -1,5 +1,6 @@
 
 <div class="container2">
+  <h1>MIS FRIENDCHATS</h1>
   <mat-selection-list [multiple]="false">
     <mat-list-option *ngFor="let friend of friends" [value]="friend">
       <span class="friend" (click)="takeFriends(friend._id)">

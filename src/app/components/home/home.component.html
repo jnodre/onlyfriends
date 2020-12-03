@@ -8,19 +8,22 @@
   </button> -->
 <div class="topbar">
 
-<img [matMenuTriggerFor]="menu" [src]="url" alt="" />
+
+  <div class="container-var">
+    <div class="left-separator"><img class='logo-home' src='assets/img/logo.jpg' alt="" ></div>
+  </div>
+  <img mat-card-avatar [matMenuTriggerFor]="menu" [src]="url" alt="" >
 
 <mat-menu #menu="matMenu">
   <button mat-menu-item routerLink="me">
-    <span>{{user.name}}</span>
+    <span>Mi perfil</span>
   </button>
   <button mat-menu-item (click)="logout()">
     <mat-icon>logout</mat-icon>
-    <span>Logout</span>
+    <span>Cerrar sesión</span>
   </button>
 </mat-menu>
 </div>
-
 <div class="main-container">
   <div class="grid">
     <router-outlet></router-outlet>

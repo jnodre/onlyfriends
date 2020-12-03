@@ -1,3 +1,15 @@
+
+.container-var{
+  display:flex;
+  align-items: center;
+  margin-left: 30%;
+  margin-right: 10%;
+  margin-top:3%;
+  color:#3399FF;
+}
+.left-separator{
+}
+
 .main-container {
   height: 100vh;
 }
@@ -44,5 +56,9 @@
     height: 50px;
     border-radius: 50%;
 
+  }
+  .logo-home{
+    width: 250px;
+    height: 100px;
   }
 }

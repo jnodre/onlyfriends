@@ -31,7 +31,8 @@ import { FriendProfileComponent } from './components/home/friend-profile/friend-
 import { AngularFireStorageModule, BUCKET } from '@angular/fire/storage';
 import { AngularFireModule } from '@angular/fire';
 import { MatMenuModule } from '@angular/material/menu';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+//import { FontAwesomeModule } from '@fortawesome/angular-fontawesome/angular-fontawesome';
+//import { FontAwesomeModule } from '@fontawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     }),
     AngularFireStorageModule,
     MatMenuModule,
-    FontAwesomeModule,
+   // FontAwesomeModule,
   ],
   providers: [
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
