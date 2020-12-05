@@ -1,6 +1,14 @@
 .container2 {
   width: 90vw;
 }
+.open-chat{
+  float:right; /* shift to right for alignment*/
+  width:50% /* set a width, you can use max-width to limit this as well*/
+
+}
+.end{
+  justify-content: flex-end;
+}
 
 .friend {
   display: flex;

@@ -1,12 +1,18 @@
 
 <div class="container2">
-  <h1>MIS FRIENDCHATS</h1>
+  <div class="separator"></div>
+  <h1>FRIENDCHATS</h1>
   <mat-selection-list [multiple]="false">
     <mat-list-option *ngFor="let friend of friends" [value]="friend">
       <span class="friend" (click)="takeFriends(friend._id)">
         <mat-icon class="card-icon">person </mat-icon>
         {{ friend.name }}
+
+        <div mat-dialog-actions class="end">
+          <button mat-button cdkFocusInitial>Hablar</button>
+        </div>
       </span>
+
     </mat-list-option>
   </mat-selection-list>
 </div>

@@ -31,6 +31,7 @@ import { FriendProfileComponent } from './components/home/friend-profile/friend-
 import { AngularFireStorageModule, BUCKET } from '@angular/fire/storage';
 import { AngularFireModule } from '@angular/fire';
 import { MatMenuModule } from '@angular/material/menu';
+import { ChatComponent } from './components/home/friend-list/chat/chat.component';
 //import { FontAwesomeModule } from '@fortawesome/angular-fontawesome/angular-fontawesome';
 //import { FontAwesomeModule } from '@fontawesome/angular-fontawesome';
 
@@ -44,6 +45,7 @@ import { MatMenuModule } from '@angular/material/menu';
     MatchesComponent,
     FriendListComponent,
     FriendProfileComponent,
+    ChatComponent,
   ],
   imports: [
     FormsModule,

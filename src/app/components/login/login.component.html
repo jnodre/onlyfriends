@@ -1,5 +1,5 @@
   <div class="inputContainer">
-    <img src="assets/img/logo.jpg">
+    <img src="assets/img/logoViejo.jpg">
     <mat-card>
 
     <form class="form" [formGroup]="logInForm">
@@ -46,7 +46,7 @@
        (click)="logIn()" mat-raised-button color="primary">
         Iniciar sesión
       </button>
-      <mat-error class="errorMessage" *ngIf="errorLogin">{{getErrorMessageAccount()}}</mat-error>        
+      <mat-error class="errorMessage" *ngIf="errorLogin">{{getErrorMessageAccount()}}</mat-error>
     </form>
 
     <div class="bottomFormText">
