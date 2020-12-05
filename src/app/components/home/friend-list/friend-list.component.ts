@@ -29,6 +29,9 @@ export class FriendListComponent implements OnInit {
     });
   }
 
+  public openChat(friendId: string){
+    this.router.navigate([`/chat`, {'friendId': friendId}])
+  }
   ngOnInit(): void {
     this.user.friends.forEach((r) => {
       this.getuserService.getUser(r).then((res) => {

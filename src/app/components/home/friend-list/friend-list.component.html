@@ -9,7 +9,7 @@
         {{ friend.name }}
 
         <div mat-dialog-actions class="end">
-          <button mat-button cdkFocusInitial>Hablar</button>
+          <button (click)="openChat(friend._id)">Hablar</button>
         </div>
       </span>
 

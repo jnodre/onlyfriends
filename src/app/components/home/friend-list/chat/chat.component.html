@@ -1,0 +1,39 @@
+<div class="panel-heading">
+  <h3 class="panel-title">
+    <button class="button-icon" (click)='back()'><span class="material-icons btn btn-primary">
+       arrow_back_ios</span>
+      </button> ONLYCHAT: {{friendName}}
+  </h3>
+</div>
+<hr>
+<div class="chats app-mensajes" id ="app-mensajes">
+    <div class="chat text-right" *ngFor="let m of chatService.chat">
+      <div class="chat-avatar">
+        <a class="avatar avatar-online" data-toggle="tooltip" href="#" data-placement="right" title="" data-original-title="June Lane">
+          <img [src]="myUrl"  onerror="this.onerror=null"  width="300px" height="300px"/>
+          <i></i>
+        </a>
+      </div>
+      <div class="chat-body">
+        <div class="chat-body">
+          <div class="chat-content">
+            <p>
+              {{m.mensaje}}
+            <time class="chat-time" datetime="2015-07-01T11:37">11:37:08 am</time>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-footer">
+      <form>
+        <div class="input-group">
+          <input type="text" id="mensajeInput" class="form-control" placeholder="Escribe tu mensaje aquí...">
+          <span class="input-group-btn">
+            <button class="button-send btn btn-primary" type="button" (click)="sendMessage()"><span class="material-icons">
+              send
+              </span></button>
+          </span>
+        </div>
+      </form>
+    </div>
+</div>

@@ -7,6 +7,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './components/login/login.component';
 import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
@@ -27,13 +28,14 @@ import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { FriendListComponent } from './components/home/friend-list/friend-list.component';
 import { MatListModule } from '@angular/material/list';
 import { FriendProfileComponent } from './components/home/friend-profile/friend-profile.component';
-
 import { AngularFireStorageModule, BUCKET } from '@angular/fire/storage';
 import { AngularFireModule } from '@angular/fire';
 import { MatMenuModule } from '@angular/material/menu';
 import { ChatComponent } from './components/home/friend-list/chat/chat.component';
 //import { FontAwesomeModule } from '@fortawesome/angular-fontawesome/angular-fontawesome';
 //import { FontAwesomeModule } from '@fontawesome/angular-fontawesome';
+import { ChatServiceService } from './services/chat-service.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -48,10 +50,12 @@ import { ChatComponent } from './components/home/friend-list/chat/chat.component
     ChatComponent,
   ],
   imports: [
+    HttpClientModule,
     FormsModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    MatFormFieldModule,
     MatInputModule,
     MatIconModule,
     MatButtonModule,
@@ -85,6 +89,9 @@ import { ChatComponent } from './components/home/friend-list/chat/chat.component
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
     JwtHelperService,
     { provide: BUCKET, useValue: 'gs://onlyfriends-79989.appspot.com' },
+
+    {provide: BUCKET, useValue: 'gs://onlyfriends-79989.appspot.com'},
+    ChatServiceService
   ],
   bootstrap: [AppComponent],
 })
