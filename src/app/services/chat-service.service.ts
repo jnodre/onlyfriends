@@ -1,5 +1,7 @@
+import { WeekDay } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { disableDebugTools } from '@angular/platform-browser';
 import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
@@ -9,6 +11,10 @@ export class ChatServiceService {
   public receptor!:string;
   public chat: any [] = [];
   public itemsCollection!: AngularFirestoreCollection<any>;
+  day = new Date();
+  public fechaString:string = this.day.getDate.toString()+"/"+this.day.getMonth.toString()+"/"+this.day.getFullYear.toString();
+  public horaString:string = this.day.getHours+":"+this.day.getMinutes+":"+this.day.getSeconds;
+
   constructor(private afs: AngularFirestore) { }
 
   loadMessages(){
@@ -35,7 +41,8 @@ export class ChatServiceService {
       let mensaje: any = {
         emisor: userId,
         receptor: friendId,
-        fecha: new Date().getTime(),
+        fecha: this.fechaString,
+        hora: this.horaString,
         mensaje: texto
       }
       return this.itemsCollection.add(mensaje);
