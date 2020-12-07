@@ -4,6 +4,7 @@ import { User } from '@int/user';
 import { AuthService } from '@app/services/auth.service';
 import { GetuserService } from '@app/services/getuser.service';
 import { Output, EventEmitter } from '@angular/core';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-friend-list',
@@ -11,11 +12,15 @@ import { Output, EventEmitter } from '@angular/core';
   styleUrls: ['./friend-list.component.scss'],
 })
 export class FriendListComponent implements OnInit {
+  urlEmpty;
+  existUrl: boolean = false;
   constructor(
     private authService: AuthService,
     private router: Router,
-    private getuserService: GetuserService
+    private getuserService: GetuserService,
+    private storage: AngularFireStorage
   ) {
+    this.urlEmpty = 'assets/img/error.png';
     this.user = JSON.parse(this.authService.setCurrentSession() || '{}');
   }
   friends: any[] = [];
@@ -32,6 +37,24 @@ export class FriendListComponent implements OnInit {
   public openChat(friendId: string){
     this.router.navigate([`/chat`, {'friendId': friendId}])
   }
+
+ /*obtainImage(id: string) {
+    const filename = 'fotos/' + id;
+    const fileRef = this.storage.ref(filename);
+    const downloadUrl = fileRef.getDownloadURL();
+    let url: string;
+    downloadUrl.subscribe((u) => {
+      if (u) {
+        this.existUrl=true;
+        url = u;
+      }else{
+        return this.urlEmpty;
+      }
+      console.log('LA OTRA URL: ', url);
+      return url;
+    });
+  }*/
+
   ngOnInit(): void {
     this.user.friends.forEach((r) => {
       this.getuserService.getUser(r).then((res) => {

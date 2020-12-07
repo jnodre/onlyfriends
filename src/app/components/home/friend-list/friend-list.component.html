@@ -1,31 +1,113 @@
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
 
-<div class="container2">
-  <div class="separator"></div>
-  <h1>FRIENDCHATS</h1>
-  <mat-selection-list [multiple]="false">
-    <mat-list-option *ngFor="let friend of friends" [value]="friend">
-      <span class="friend" (click)="takeFriends(friend._id)">
-        <mat-icon class="card-icon">person </mat-icon>
-        {{ friend.name }}
+<a href="http://bootsnipp.com/mouse0270/snippets/4l0k2" class="btn btn-danger hide" id="back-to-bootsnipp">Back to Bootsnipp</a>
+<div style="height: 40px;"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-offset-3 col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading c-list">
+                    <span class="title">FRIENDMATCHES</span>
+                </div>
 
-        <div mat-dialog-actions class="end">
-          <button (click)="openChat(friend._id)">Hablar</button>
+                <div class="row" style="display: none;">
+                    <div class="col-xs-12">
+                        <div class="input-group c-search">
+                            <input type="text" class="form-control" id="contact-list-search">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search text-muted"></span></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <ul class="list-group" id="contact-list" >
+                    <li class="list-group-item" *ngFor="let friend of friends" [value]="friend">
+                        <div class="col-xs-12 col-sm-3">
+                            <img src="https://cdn4.iconfinder.com/data/icons/charity-donation-1/128/f-02-512.png" alt="Scott Stevens" class="imgclass img-responsive img-circle" />
+                        </div>
+                        <div class="col-xs-12 col-sm-9">
+
+                            <span class="name">{{friend.name}}</span><br/>
+                            <span class="glyphicon glyphicon-map-marker text-muted c-info" data-toggle="tooltip" title="5842 Hillcrest Rd"></span>
+                            <span class="visible-xs"> <span class="text-muted">{{friend.location}}</span><br/></span><br>
+                            <div class="options">
+                              <button class=" visible-xs view-profile" (click)="takeFriends(friend._id)"><span class="material-icons" >
+                                visibility
+                                </span> Ver perfil</button><div class="horizontal-separator"></div>
+                              <button class=" visible-xs view-profile" (click)="openChat(friend._id)"><span class="material-icons" >
+                                  chat_bubble
+                                  </span> Abrir chat</button>
+                              </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </li>
+                </ul>
+            </div>
         </div>
-      </span>
+	</div>
 
-    </mat-list-option>
-  </mat-selection-list>
-</div>
 
-<div class="no-matches" *ngIf="friends.length==0">
-  <div class="no-people" style="text-align:center;margin-top:70px;">
-    <div class="separator"></div>
-    <div class="container">
-        <button class="pulse-button"></button>
+    <div class="no-matches" *ngIf="friends.length==0">
+      <div class="no-people" style="text-align:center;margin-top:70px;">
+        <div class="separator"></div>
+        <div class="container">
+            <button class="pulse-button"></button>
+        </div>
+      </div>
+
+
+      <div class="separator"></div>
+      <h3 class="no-people-text">Aún no tienes friendmatches registrados</h3>
     </div>
-  </div>
+    <!-- JavaScrip Search Plugin -->
+    <script src="//rawgithub.com/stidges/jquery-searchable/master/dist/jquery.searchable-1.0.0.min.js"></script>
 
-
-  <div class="separator"></div>
-  <h3 class="no-people-text">Aún no tienes friendmatches registrados</h3>
 </div>
+<script>
+  $(function () {
+    /* BOOTSNIPP FULLSCREEN FIX */
+    if (window.location == window.parent.location) {
+        $('#back-to-bootsnipp').removeClass('hide');
+    }
+
+
+    $('[data-toggle="tooltip"]').tooltip();
+
+    $('#fullscreen').on('click', function(event) {
+        event.preventDefault();
+        window.parent.location = "http://bootsnipp.com/iframe/4l0k2";
+    });
+    $('a[href="#cant-do-all-the-work-for-you"]').on('click', function(event) {
+        event.preventDefault();
+        $('#cant-do-all-the-work-for-you').modal('show');
+    })
+
+    $('[data-command="toggle-search"]').on('click', function(event) {
+        event.preventDefault();
+        $(this).toggleClass('hide-search');
+
+        if ($(this).hasClass('hide-search')) {
+            $('.c-search').closest('.row').slideUp(100);
+        }else{
+            $('.c-search').closest('.row').slideDown(100);
+        }
+    })
+
+    $('#contact-list').searchable({
+        searchField: '#contact-list-search',
+        selector: 'li',
+        childSelector: '.col-xs-12',
+        show: function( elem ) {
+            elem.slideDown(100);
+        },
+        hide: function( elem ) {
+            elem.slideUp( 100 );
+        }
+    })
+});
+
+</script>

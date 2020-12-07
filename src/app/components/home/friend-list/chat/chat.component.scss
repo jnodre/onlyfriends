@@ -332,7 +332,10 @@ textarea {
   -webkit-transition: .2s linear;
   transition: .2s linear
 }
-
+.button-icon{
+  border: none;
+  background-color:white;
+}
 .file-group {
   position: relative;
   overflow: hidden

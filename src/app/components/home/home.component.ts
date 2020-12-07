@@ -7,12 +7,14 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { finalize } from 'rxjs/operators';
+import * as $ from 'jquery';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
+  activedRoute!:string;
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -45,5 +47,7 @@ export class HomeComponent implements OnInit {
   }
   ngOnInit(): void {
     this.loadImage();
+    this.activedRoute=this.router.url;
+    console.log("RUTA ACTIVA: ", this.router.url);
   }
 }

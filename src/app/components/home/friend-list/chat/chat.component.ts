@@ -22,9 +22,6 @@ export class ChatComponent implements OnInit {
   user;
   element: any;
   mensaggeSended!:string;
-  day = new Date();
-  public fechaString:string = this.day.getDate.toString()+"/"+this.day.getMonth.toString()+"/"+this.day.getFullYear.toString();
-  public horaString:string = this.day.getHours+":"+this.day.getMinutes+":"+this.day.getSeconds;
   constructor(private router:ActivatedRoute,
     private storage: AngularFireStorage,
     private router_navigate:Router,
@@ -51,9 +48,7 @@ export class ChatComponent implements OnInit {
     this.getUserService.getUser(this.friendId).then((r) => {
       this.friendName=r.name;
     });
-    /*this.element=document.getElementById("app-mensajes");
-    var x = document.getElementById("fecha");
-    x!.innerHTML = this.fechaString;*/
+    this.element=document.getElementById("app-mensajes");
   }
 
   sendMessage(){

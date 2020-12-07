@@ -9,7 +9,9 @@
           <div class="col-md-6">
               <div class="card card-bordered">
                   <div class="card-header">
-                      <h4 class="card-title"><strong>{{friendName}}</strong></h4> <a class="btn btn-xs btn-secondary" href="#" data-abc="true">FriendChat</a>
+                    <button class="button-icon" (click)='back()'><span class="material-icons btn btn-primary">
+                      arrow_back_ios</span>
+                     </button><h4 class="card-title"><strong>{{friendName}}</strong></h4> <a class="btn btn-xs btn-secondary" href="#" data-abc="true">FriendChat</a>
                   </div>
                   <div class="ps-container ps-theme-default ps-active-y" id="chat-content" style="overflow-y: scroll !important; height:400px !important;">
                       <div class="media media-chat"> <img class="avatar" [src]="friendUrl" alt="...">
@@ -35,8 +37,8 @@
                   </div>
                   <div class="publisher bt-1 border-light">
                     <img class="avatar avatar-xs" [src]="myUrl" alt="...">
-                    <input class="publisher-input" type="text" placeholder="Escribe tu mensaje aquí...">
-                    <span class="publisher-btn file-group"> <i class="fa fa-paperclip file-browser"></i>
+                    <input class="publisher-input" id="mensajeInput" type="text" placeholder="Escribe tu mensaje aquí...">
+                    <span class="publisher-btn file-group"> <button (click)="sendMessage()"><i class="fa fa-paperclip file-browser"></i></button>
                       <input type="file"> </span> <a class="publisher-btn" href="#" data-abc="true"><i class="fa fa-smile"></i></a>
                       <a class="publisher-btn text-info" href="#" data-abc="true"><i class="fa fa-paper-plane"></i></a> </div>
               </div>
